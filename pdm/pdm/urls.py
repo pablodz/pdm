@@ -22,15 +22,19 @@ from django.conf.urls.static import static
 
 # Pages
 from pdm.views import index_view
+from pdm.views import dashboard_view
 
 urlpatterns = [
 
+    
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     # -----------------INICIO INDEX----------------
-    path('', index_view, name='index'),
-
+    path('', index_view, name='main-view'),
     # ------------------FIN INDEX------------------
+    # -----------------INICIO DASHBOARD----------------
+    path('dashboard/', dashboard_view, name='dashboard-view'),
+    # ------------------FIN DASHBOARD------------------
 
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
