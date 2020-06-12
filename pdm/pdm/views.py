@@ -65,18 +65,15 @@ def dashboard_view(request):
     ruta_vista = ['Dashboard']
     year=2020
 
-    # Variables de reporte mensual
-    cantidadPlatosMes = 900
-    porcentajeRespectoMesAnterior = 112.5
+    indicador1="17%"
+    indicador1_porcentaje="150"
+    indicador2="10%"
+    indicador2_porcentaje="76"
+    indicador3="20%"
+    indicador3_porcentaje="7 momentos"
+    indicador4="18%"
+    indicador4_porcentaje="15"
 
-    porcentajeComprasMesActual = 18
-    montoComprasMesActual = 10390.50
-    porcentajeVentasMesActual = 17
-    montoVentasMesActual = 35215.48
-    porcentajeIngresosMesActual = 15
-    montoIngresosMesActual = 14568.35
-    porcentajeImpuestosMesActual = 14
-    montoImpuestosMesActual = 5482.21
 
     # Para mostrar en tabla vamos a usar GROUPBY
     # tutorial sacado de https://stackoverflow.com/a/629600/10491422
