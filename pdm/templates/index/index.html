@@ -7,8 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<meta name="description"
-		content="html 5 template, dentist, stomatologist, dental clinic template, medical template, clinic template, surgery clinic theme, plastic surgery template">
+	<meta name="description" content="MedicPUCP">
 	<meta name="author" content="websmirno.site">
 	<meta name="format-detection" content="telephone=no">
 	<title>MedicPUCP</title>
@@ -17,14 +16,14 @@
 	<link href=" {% static '1/vendor/animate/animate.min.css' %}" rel="stylesheet">
 	<link href=" {% static '1/css/style.css' %}" rel="stylesheet">
 	<link href=" {% static '1/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.css' %}" rel="stylesheet">
-	<!-- <link href=" {% static '1/css/style.css' %}" rel="stylesheet"> -->
+	<link href=" {% static '1/icons/style.css' %}" rel="stylesheet">
 	<!--Favicon-->
 	<link rel="icon" href=" {% static '1/images/favicon.png' %}" type="image/x-icon">
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 	<!-- Google map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiFdr5Z0WRIXKUOqoRRvzRQ5SkzhkUVjk"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiFdr5Z0WRIXKUOqoRRvzRQ5SkzhkUVjk"></script> -->
 </head>
 
 <body class="shop-page">
@@ -33,13 +32,13 @@
 		<div class="header-mobile-info">
 			<div class="header-mobile-info-content js-info-content">
 				<ul class="icn-list-sm">
-					<li><i class="icon-placeholder2"></i>Dirección:
+					<li><i class="icon-placeholder2"></i>{{ text_address }}
 					</li>
-					<li><i class="icon-telephone"></i><span class="text-nowrap">Cel: 900000000</span>, <span
-							class="text-nowrap">1-800-267-0001</span></li>
-					<li><i class="icon-black-envelope"></i><a href="mailto:a20145879@pucp.pe">a20145879@pucp.pe</a></li>
-					<li><i class="icon-clock"></i>Mon-Fri: 08:00 - 20:00
-						<br> Saturday: 08:00 - 18:00</li>
+					<li><i class="icon-telephone"></i><span class="text-nowrap">{{ text_cel }}</span>, <span
+							class="text-nowrap">{{ text_cel_2 }}</span></li>
+					<li><i class="icon-black-envelope"></i><a href="mailto:{{ text_email }}">{{ text_email }}</a></li>
+					<li><i class="icon-clock"></i>{{ text_days }}
+						<br> {{ text_days_2 }}</li>
 				</ul>
 			</div>
 		</div>
@@ -49,9 +48,12 @@
 					<div class="col-3">
 						<div class="header-mobile-info-toggle js-info-toggle"></div>
 					</div>
-					<div class="col-auto header-button-wrap ml-auto"><a href="#" class="btn" data-toggle="modal"
-							data-target="#modalBookingForm"><i class="icon-right-arrow"></i>APPOINTMENT<i
-								class="icon-right-arrow"></i></a></div>
+					<div class="col-auto header-button-wrap ml-auto">
+						<a href="#" class="btn" data-toggle="modal">
+							<!-- data-target="#modalBookingForm" -->
+							<i class="icon-right-arrow"></i>Iniciar sesión<i class="icon-right-arrow"></i>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -59,12 +61,12 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-auto d-flex align-items-center">
-						<div class="header-phone"><i class="icon-telephone"></i><a
-								href="tel:1-847-555-5555">Cel: 900000000</a></div>
-						<div class="header-info"><i class="icon-placeholder2"></i>Dirección:
+						<div class="header-phone"><i class="icon-telephone"></i>
+							<a href="tel:1-847-555-5555">{{ text_cel }}</a></div>
+						<div class="header-info"><i class="icon-placeholder2"></i>{{ text_address }}
 						</div>
 						<div class="header-info"><i class="icon-black-envelope"></i><a
-								href="mailto:a20145879@pucp.pe">a20145879@pucp.pe</a></div>
+								href="mailto:{{ text_email }}">{{ text_email }}</a></div>
 					</div>
 					<div class="col-auto ml-auto d-flex align-items-center">
 						<span class="header-social">
@@ -83,8 +85,8 @@
 						<span class="icon-menu"></span>
 					</button>
 					<div class="col-lg-auto col-lg-2 d-flex align-items-lg-center">
-						<a href=" {% static '1/index.html' %}" class="header-logo"><img
-								src=" {% static '1/images/logo.png' %}" alt="" class="img-fluid"></a>
+						<a href="#" class="header-logo">  
+							<img src=" {% static '1/images/logo.png' %}" alt="" class="img-fluid"></a>
 					</div>
 					<div class="col-lg ml-auto header-nav-wrap">
 						<div class="header-nav js-header-nav">
@@ -145,7 +147,7 @@
 											</ul>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="contact.html">Contacts</a>
+											<a class="nav-link" href="contact.html">Contacto</a>
 										</li>
 									</ul>
 								</div>
@@ -154,10 +156,11 @@
 						<div class="header-search">
 							<form action="#" class="form-inline">
 								<i class="icon-search"></i>
-								<input type="text" placeholder="Search">
+								<input type="text" placeholder="Buscar">
 								<button type="submit"><i class="icon-search"></i></button>
 							</form>
 						</div>
+						<!-- 
 						<div class="header-cart cart-toggler">
 							<a href="#" class="icon icon-cart"></a>
 							<span class="badge">2</span>
@@ -193,23 +196,39 @@
 								</div>
 								<a href="#" class="btn btn-sm btn-hover-fill"><span>CheckOut</span></a>
 							</div>
-						</div>
+						</div> 
+						-->
 						<div class="header-lang lang-toggler">
-							<a href="#" class="icon icon-globe1"></a>
+							<a href="#" class="icon-user1"> <span>Ingresar</span> </a>
 							<div class="header-lang-dropdown">
 								<ul>
-									<li><a href="#"><span class="header-lang-flag"><img
-													src="{% static '1/images/flag/flag_en.png' %}"
-													alt=""></span><span>English</span></a></li>
-									<li><a href="#"><span class="header-lang-flag"><img
-													src="{% static '1/images/flag/flag_fr.png' %}"
-													alt=""></span><span>French</span></a></li>
-									<li><a href="#"><span class="header-lang-flag"><img
-													src="{% static '1/images/flag/flag_de.png' %}"
-													alt=""></span><span>Denmark</span></a></li>
-									<li><a href="#"><span class="header-lang-flag"><img
-													src="{% static '1/images/flag/flag_ru.png' %}"
-													alt=""></span><span>Russian</span></a></li>
+									<li>
+										<a href="/dashboard/">
+											<span class="header-lang-flag">
+												<img src="{% static '1/images/users/user1.jpg' %}" alt=""></span>
+											<span>Soy usuario</span>
+										</a>
+									</li>
+									<li>
+										<a href="/personal/">
+											<span class="header-lang-flag">
+												<img src="{% static '1/images/users/user2.jpg' %}" alt="">
+											</span>
+											<span>Soy administrativo</span>
+										</a>
+									</li>
+									<!-- <li><a href="#"><span class="header-lang-flag"><img
+														src="{% static '1/images/flag/flag_en.png' %}"
+														alt=""></span><span>English</span></a></li>
+										<li><a href="#"><span class="header-lang-flag"><img
+														src="{% static '1/images/flag/flag_fr.png' %}"
+														alt=""></span><span>French</span></a></li>
+										<li><a href="#"><span class="header-lang-flag"><img
+														src="{% static '1/images/flag/flag_de.png' %}"
+														alt=""></span><span>Denmark</span></a></li>
+										<li><a href="#"><span class="header-lang-flag"><img
+														src="{% static '1/images/flag/flag_ru.png' %}"
+														alt=""></span><span>Russian</span></a></li> -->
 								</ul>
 							</div>
 						</div>
@@ -222,12 +241,13 @@
 	<div class="page-content">
 		<!--section slider-->
 		<div class="section mt-0">
+
 			<div id="mainSliderWrapper">
 				<div class="loading-content">
 					<div class="inner-circles-loader"></div>
 				</div>
-				<div class="main-slider mb-0 arrows-white" id="mainSlider"
-					data-slick='{"arrows": true, "responsive":[{"breakpoint": 768,"settings":{"arrows": false, "dots": true }}]}'>
+				<div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider"
+					data-slick='{"arrows": false, "dots": true}'>
 					<div class="slide">
 						<div class="img--holder" data-animation="kenburns"
 							data-bg="{% static '1/images/content/slider/slide-01.jpg' %}">
@@ -243,7 +263,7 @@
 											con MedicPUCP</div>
 										<div class="slide-btn"><a href="services.html" class="btn btn-white"
 												data-animation="fadeInUp" data-animation-delay="2s"><i
-													class="icon-right-arrow"></i><span>Leer más</span><i
+													class="icon-right-arrow"></i><span>Ver demo</span><i
 													class="icon-right-arrow"></i></a></div>
 									</div>
 								</div>
@@ -258,14 +278,14 @@
 							<div class="vert-wrap container">
 								<div class="vert">
 									<div class="container">
-										<div class="slide-txt1" data-animation="fadeInDown" data-animation-delay="1s">We
-											Provide
-											<br><b>Full Medical Care!</b></div>
+										<div class="slide-txt1" data-animation="fadeInDown" data-animation-delay="1s">
+											Brindamos
+											<br><b>sistemas de sensado</b></div>
 										<div class="slide-txt2" data-animation="fadeInUp" data-animation-delay="1.5s">
-											Highest standards of customer service</div>
+											Detectan las enfermedades generales</div>
 										<div class="slide-btn"><a href="services.html" class="btn btn-white"
 												data-animation="fadeInUp" data-animation-delay="2s"><i
-													class="icon-right-arrow"></i><span>Know more</span><i
+													class="icon-right-arrow"></i><span>Leer más</span><i
 													class="icon-right-arrow"></i></a></div>
 									</div>
 								</div>
@@ -285,8 +305,8 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="title-wrap text-center text-lg-left mt-15 d-none d-md-block">
-							<div class="h-sub">Welcome to our plastic surgeon clinic</div>
-							<h2 class="h1">Meet <span class="theme-color">Dr. Anderson</span></h2>
+							<div class="h-sub">{{ text1 }}</div>
+							<h2 class="h1">{{ text2 }} <span class="theme-color">{{ text3 }}</span></h2>
 						</div>
 						<div class="row">
 							<div class="d-lg-none col-8 col-sm-6 col-lg-5 mx-auto"><img
@@ -294,24 +314,31 @@
 							</div>
 							<div class="col-sm">
 								<div class="title-wrap text-center text-lg-left mt-3 mt-sm-0 d-md-none">
-									<div class="h-sub">Welcome to our plastic surgeon clinic</div>
-									<h2 class="h1">Meet <span class="theme-color">Dr. Anderson</span></h2>
+									<div class="h-sub">{{ text1 }}</div>
+									<h2 class="h1">{{ text2 }} <span class="theme-color">{{ text3 }}</span></h2>
 								</div>
 								<div class="text-left mt-3 mt-sm-0">
-									<p class="p-lg">We are pleased that you have chosen to explore what we have to
-										offer: aesthetic and reconstructive services that are provided by
-										fellowship-trained plastic surgeons, in a safe and secure environment. Whether
-										you desire minimally invasive facial rejuvenation or perforator flap breast
-										reconstruction, we are committed to providing the highest quality experience,
-										focusing on the unique needs of the plastic surgery patient.</p>
-									<p>Plastic surgery provides evaluation and treatment for adult and pediatric
-										patients who are candidates for reconstructive or aesthetic surgery</p>
+									<p class="p-lg">Nuestra plataforma se encarga de recopilar y procesar datos de los
+										dispositivos
+										asociados (MedicArness) de cada personal de salud asociado de un determinado
+										centro
+										de salud. Nuestros servidores se encargan de procesar datos y convertirlos en
+										métricas
+										para poder tomar decisiones, además de un seguimiento en tiempo real de todos
+										los sensores
+										asociados.
+									</p>
+									<p>Brindamos plataformas para que personal administrativo y sus asociados puedan
+										acceder desde
+										cualquier lugar del mundo.
+									</p>
 									<div class="mt-0 mt-lg-2 mt-xl-4"><img
-											src="{% static '1/images/content/signature.png' %}" alt="" class="img-fluid">
+											src="{% static '1/images/content/signature.png' %}" alt=""
+											class="img-fluid">
 									</div>
 									<div class="mt-0 mt-lg-15 mt-xl-3"></div>
 									<a href="#" class="btn-link" data-toggle="modal"
-										data-target="#modalBookingForm">Booking a Visit<i
+										data-target="#modalBookingForm">Ingresar a la plataforma<i
 											class="icon-right-arrow"></i></a>
 								</div>
 							</div>
@@ -325,7 +352,7 @@
 		<div class="section">
 			<div class="container-fluid px-0">
 				<div class="title-wrap text-center">
-					<h2 class="h1">General Services</h2>
+					<h2 class="h1">Kits de prueba</h2>
 					<div class="h-decor"></div>
 				</div>
 				<div class="row no-gutters services-box-wrap services-box-wrap-desktop">
@@ -335,11 +362,10 @@
 								<div class="service-box-caption text-center">
 									<div class="service-box-icon"><i class="icon-man"></i></div>
 									<div class="service-box-icon-bg"><i class="icon-man"></i></div>
-									<h3 class="service-box-title">Male Plastic Surgery</h3>
-									<p>Men of all ages and all walks of life are requesting plastic surgery for cosmetic
-										reasons</p>
+									<h3 class="service-box-title">{{ text_kit_1 }}</h3>
+									<p>{{ text_kit_2 }}</p>
 									<div class="btn-wrap"><a href="service-page.html" class="btn"><i
-												class="icon-right-arrow"></i><span>Know more</span><i
+												class="icon-right-arrow"></i><span>Leer más</span><i
 												class="icon-right-arrow"></i></a></div>
 								</div>
 							</div>
@@ -347,11 +373,12 @@
 								<div class="service-box-caption text-center">
 									<div class="service-box-icon"><i class="icon-injecting"></i></div>
 									<div class="service-box-icon-bg"><i class="icon-injecting"></i></div>
-									<h3 class="service-box-title">Non-Surgical Procedures</h3>
-									<p>Aesthetic plastic surgery can achieve impressive changes. We offer a wide variety
-										of non-surgical procedures</p>
+									<h3 class="service-box-title">{{ text_kit_3 }}</h3>
+									<p>
+										{{ text_kit_4 }}
+									</p>
 									<div class="btn-wrap"><a href="service-page.html" class="btn"><i
-												class="icon-right-arrow"></i><span>Know more</span><i
+												class="icon-right-arrow"></i><span>Leer más</span><i
 												class="icon-right-arrow"></i></a></div>
 								</div>
 							</div>
@@ -359,20 +386,22 @@
 					</div>
 					<div class="col-8 order-2">
 						<div class="service-box">
-							<div class="service-box-image" data-bg="{% static '1/images/content/service-02.jpg' %}"></div>
+							<div class="service-box-image" data-bg="{% static '1/images/content/service-02.jpg' %}">
+							</div>
 							<div class="service-box-caption text-center w-50 ml-auto">
-								<h3 class="service-box-title">Facial Procedures</h3>
-								<p>Our Clinic is board certified in facial plastic surgery and plastic surgery and
-									specializes in facial cosmetic procedures.</p>
+								<h3 class="service-box-title">{{ text_kit_5 }}</h3>
+								<p>{{ text_kit_6 }}</p>
 								<div class="btn-wrap"><a href="service-page.html" class="btn"><i
-											class="icon-right-arrow"></i><span>Know more</span><i
+											class="icon-right-arrow"></i><span>Leer más</span><i
 											class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
 					</div>
+					<!-- 
 					<div class="col-8 order-3 order-lg-4 order-xl-3">
 						<div class="service-box">
-							<div class="service-box-image" data-bg="{% static '1/images/content/service-04.jpg' %}"></div>
+							<div class="service-box-image" data-bg="{% static '1/images/content/service-04.jpg' %}">
+							</div>
 							<div class="service-box-caption text-center w-50 ml-auto">
 								<h3 class="service-box-title">Breast Procedures</h3>
 								<p>Cosmetic breast surgery can help you get the breast
@@ -410,7 +439,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
+				-->
 				</div>
 				<div class="row no-gutters services-box-wrap services-box-wrap-mobile">
 					<div class="service-box-rotator js-service-box-rotator">
@@ -418,11 +448,10 @@
 							<div class="service-box-caption text-center">
 								<div class="service-box-icon"><i class="icon-man"></i></div>
 								<div class="service-box-icon-bg"><i class="icon-man"></i></div>
-								<h3 class="service-box-title">Male Plastic Surgery</h3>
-								<p>Men of all ages and all walks of life are requesting plastic surgery for cosmetic
-									reasons</p>
+								<h3 class="service-box-title">{{ test_kit_1 }}</h3>
+								<p>{{ text_kit_2 }}</p>
 								<div class="btn-wrap"><a href="service-page.html" class="btn"><i
-											class="icon-right-arrow"></i><span>Know more</span><i
+											class="icon-right-arrow"></i><span>Leer más</span><i
 											class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
@@ -430,26 +459,26 @@
 							<div class="service-box-caption text-center">
 								<div class="service-box-icon"><i class="icon-injecting"></i></div>
 								<div class="service-box-icon-bg"><i class="icon-injecting"></i></div>
-								<h3 class="service-box-title">Non-Surgical Procedures</h3>
-								<p>Aesthetic plastic surgery can achieve impressive changes. We offer a wide variety of
-									non-surgical procedures</p>
-								<div class="btn-wrap"><a href="service-page.html" class="btn"><i
-											class="icon-right-arrow"></i><span>Know more</span><i
-											class="icon-right-arrow"></i></a></div>
+								<h3 class="service-box-title">{{ text_kit_3 }}</h3>
+								<p>{{ text_kit_4 }}</p>
+								<div class="btn-wrap"><a href="service-page.html" class="btn">
+										<i class="icon-right-arrow"></i><span>Leer más</span>
+										<i class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
 						<div class="service-box service-box-greybg service-box--hiddenbtn">
 							<div class="service-box-caption text-center">
 								<div class="service-box-icon"><i class="icon-body"></i></div>
 								<div class="service-box-icon-bg"><i class="icon-body"></i></div>
-								<h3 class="service-box-title">Body Procedures</h3>
-								<p>Body Procedures are dedicated to aesthetic and functional enhancement of your body
+								<h3 class="service-box-title">{{ text_kit_5 }}</h3>
+								<p> {{ text_kit_6 }}
 								</p>
 								<div class="btn-wrap"><a href="service-page.html" class="btn"><i
-											class="icon-right-arrow"></i><span>Know more</span><i
+											class="icon-right-arrow"></i><span>Leer más</span><i
 											class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
+						<!-- 
 						<div class="service-box service-box-greybg service-box--hiddenbtn">
 							<div class="service-box-caption text-center">
 								<div class="service-box-icon"><i class="icon-mommy"></i></div>
@@ -461,7 +490,8 @@
 											class="icon-right-arrow"></i><span>Know more</span><i
 											class="icon-right-arrow"></i></a></div>
 							</div>
-						</div>
+						</div> 
+						-->
 					</div>
 				</div>
 			</div>
@@ -471,8 +501,8 @@
 		<div class="section">
 			<div class="container">
 				<div class="title-wrap text-center">
-					<div class="h-sub theme-color">See the difference</div>
-					<h2 class="h1">Why Choose Us?</h2>
+					<div class="h-sub theme-color">Nuestra innovación</div>
+					<h2 class="h1">¿Por qué nosotros?</h2>
 					<div class="h-decor"></div>
 				</div>
 				<div class="row js-icn-carousel icn-carousel flex-column flex-sm-row text-center text-sm-left"
@@ -481,10 +511,11 @@
 						<div class="icn-text">
 							<div class="icn-text-circle icn-text-circle--sm"><i class="icon-medicine"></i></div>
 							<div>
-								<h5 class="icn-text-title">High Standard of surgery</h5>
-								<p>Our surgeons are fellows of the most rigorous and academically recognized
-									accreditation body for surgeons, and have completed accredited fellowship training
-									with high standards of quality.</p>
+								<h5 class="icn-text-title">Usamos estándares alemanes en el diseño</h5>
+								<p>Seguimos normas VDI 2221-2226 para el diseño mecatrónico de nuestros kits de
+									desarrollo.
+
+								</p>
 							</div>
 						</div>
 					</div>
@@ -492,10 +523,9 @@
 						<div class="icn-text">
 							<div class="icn-text-circle"><i class="icon-team"></i></div>
 							<div>
-								<h5 class="icn-text-title">Committed Surgical Team</h5>
-								<p>Our surgeons' expertise covers the broad scope of general, vascular and trauma
-									surgery. This includes surgery of the breast, cancers, colon and rectum, endocrine
-									system, and skin diseases.</p>
+								<h5 class="icn-text-title">Equipo profesional</h5>
+								<p>Contamos con un staff dedicado al sector mecatrónico y biomédico.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -503,10 +533,9 @@
 						<div class="icn-text">
 							<div class="icn-text-circle icn-text-circle--sm"><i class="icon-syringe"></i></div>
 							<div>
-								<h5 class="icn-text-title">Modern Equipment</h5>
-								<p>Our practice is equipped with the latest technology that allows us to perform the
-									most modern treatments. We only use the premium brand products from the leading
-									manufacturers.</p>
+								<h5 class="icn-text-title">Equipo de alta tecnología</h5>
+								<p>Usamos sensores, protocolos de comunicación e infraestructura de
+									alto nivel y de alta seguridad en todos nuestros servicios.</p>
 							</div>
 						</div>
 					</div>
@@ -563,8 +592,8 @@
 		<div class="section">
 			<div class="container">
 				<div class="title-wrap text-center">
-					<div class="h-sub theme-color">Clinic figures</div>
-					<h2 class="h1">What Have We Achieved</h2>
+					<div class="h-sub theme-color">Nuestras cifras</div>
+					<h2 class="h1">Qué hemos logrado</h2>
 					<div class="h-decor"></div>
 				</div>
 				<div class="row d-block js-counter-carousel">
@@ -574,7 +603,7 @@
 							<div class="counter-box-number"><span class="count" data-to="15" data-speed="1500">0</span>+
 							</div>
 							<div class="decor"></div>
-							<div class="counter-box-text">Years of experience</div>
+							<div class="counter-box-text">Acuerdos comerciales</div>
 						</div>
 					</div>
 					<div class="col">
@@ -583,7 +612,7 @@
 							<div class="counter-box-number"><span class="count" data-to="10" data-speed="1500">0</span>K
 							</div>
 							<div class="decor"></div>
-							<div class="counter-box-text">Improved Smiles</div>
+							<div class="counter-box-text">Kits vendidos</div>
 						</div>
 					</div>
 					<div class="col">
@@ -592,7 +621,7 @@
 							<div class="counter-box-number"><span class="count" data-to="50" data-speed="1500">0</span>
 							</div>
 							<div class="decor"></div>
-							<div class="counter-box-text">Surgical Specialists</div>
+							<div class="counter-box-text">Especialistas</div>
 						</div>
 					</div>
 					<div class="col">
@@ -601,7 +630,7 @@
 							<div class="counter-box-number"><span class="count" data-to="4" data-speed="1500">0</span>
 							</div>
 							<div class="decor"></div>
-							<div class="counter-box-text">Our Locations</div>
+							<div class="counter-box-text">Locales</div>
 						</div>
 					</div>
 				</div>
@@ -613,64 +642,62 @@
 			<div class="container-fluid px-0">
 				<div class="row no-gutters">
 					<div class="col-xl-6 banner-left bg-cover align-items-end"
-						style='background-image: url("1/images/content/banner-left.jpg")'></div>
+						style='background-image: url({% static "1/images/content/banner-right.jpg" %})'>
+					</div>
 					<div class="col-xl-6">
 						<div class="faq-wrap">
 							<div class="text-center text-md-left">
 								<div class="title-wrap">
-									<h2 class="h1">Patient <span class="theme-color">Information</span></h2>
+									<h2 class="h1">Preguntas <span class="theme-color">frecuentes</span></h2>
 								</div>
 							</div>
 							<div id="faqAccordion1" class="faq-accordion mt-2 mt-lg-3" data-children=".faq-item">
 								<div class="faq-item">
 									<a data-toggle="collapse" data-parent="#faqAccordion1" href="#faqItem1"
-										aria-expanded="true"><span>1.</span><span>What is the difference between
-											cosmetic and reconstructive surgery?</span></a>
+										aria-expanded="true"><span>1.</span><span>¿Qué información
+											recopilamos?</span></a>
 									<div id="faqItem1" class="collapse show faq-item-content" role="tabpanel">
 										<div>
-											<p>Cosmetic surgery is performed to reshape normal structures of the body in
-												order to improve appearance and self-esteem. Cosmetic surgery is usually
-												not covered by health insurance because it is elective.</p>
+											<p>Recopilamos información de los sensores asociados a uno de nuestros kits
+												de desarrollo.
+												No recopilamos información asociada a la geolocalización
+												ni datos personales asociados al kit de desarrollo.</p>
 										</div>
 									</div>
 								</div>
 								<div class="faq-item">
 									<a data-toggle="collapse" data-parent="#faqAccordion1" href="#faqItem2"
-										aria-expanded="false" class="collapsed"><span>2.</span><span>What is the
-											recovery from cosmetic surgery like?</span></a>
+										aria-expanded="false" class="collapsed"><span>2.</span><span>Pregunta
+											2</span></a>
 									<div id="faqItem2" class="collapse faq-item-content" role="tabpanel">
 										<div>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum,
-												voluptatum. Pariatur expedita facere fugit, doloribus reiciendis.</p>
+											<p>Respuesta 2.</p>
 										</div>
 									</div>
 								</div>
 								<div class="faq-item">
 									<a data-toggle="collapse" data-parent="#faqAccordion1" href="#faqItem3"
-										aria-expanded="false" class="collapsed"><span>3.</span><span>Where will my
-											procedure be performed?</span></a>
+										aria-expanded="false" class="collapsed"><span>3.</span><span>Pregunta
+											3</span></a>
 									<div id="faqItem3" class="collapse faq-item-content" role="tabpanel">
 										<div>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum,
-												voluptatum. Pariatur expedita facere fugit, doloribus reiciendis.</p>
+											<p>Respuesta 3.</p>
 										</div>
 									</div>
 								</div>
 								<div class="faq-item">
 									<a data-toggle="collapse" data-parent="#faqAccordion1" href="#faqItem4"
-										aria-expanded="false" class="collapsed"><span>4.</span><span>What are the
-											possible risks?</span></a>
+										aria-expanded="false" class="collapsed"><span>4.</span><span>Pregunta
+											4</span></a>
 									<div id="faqItem4" class="collapse faq-item-content" role="tabpanel">
 										<div>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum,
-												voluptatum. Pariatur expedita facere fugit, doloribus reiciendis
-												repellendus.</p>
+											<p>Respuesta 4.</p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<a href="#" class="btn mt-3" data-toggle="modal" data-target="#modalQuestionForm"><i
-									class="icon-right-arrow"></i><span>Ask Question</span><i
+									class="icon-right-arrow"></i><span>Quiero realizar una pregunta</span><i
 									class="icon-right-arrow"></i></a>
 						</div>
 					</div>
@@ -679,11 +706,13 @@
 		</div>
 		<!--//section faq-->
 		<!--section-->
+
+		<!-- 
 		<div class="section">
 			<div class="container">
 				<div class="title-wrap text-center">
-					<div class="h-sub theme-color">Our Succes Storeies</div>
-					<h2 class="h1">Before and After Gallery</h2>
+					<div class="h-sub theme-color">Imagenes, videos</div>
+					<h2 class="h1">Nuestra gallería</h2>
 					<div class="h-decor"></div>
 				</div>
 				<div class="gallery-hover gallery-hover-carousel js-gallery-hover-carousel">
@@ -850,13 +879,15 @@
 				</div>
 			</div>
 		</div>
+		-->
+
 		<!--//section-->
 		<!--section special offers-->
 		<div class="section" id="specialOffer">
 			<div class="container">
 				<div class="title-wrap text-center">
-					<div class="h-sub theme-color">For Our Dear Clients</div>
-					<h2 class="h1">Special Offers</h2>
+					<div class="h-sub theme-color">Para nuestros clientes recurrentes</div>
+					<h2 class="h1">Ofertas especiales</h2>
 					<div class="h-decor"></div>
 				</div>
 				<div class="special-carousel js-special-carousel row">
@@ -865,19 +896,18 @@
 							<div class="special-card-photo">
 								<div class="corner-ribbon-wrap">
 									<div class="corner-ribbon">
-										$750<span>OFF</span>
+										10%<span>OFF</span>
 									</div>
 								</div>
-								<img src="{% static '1/images/content/special-photo-01.jpg' %}" alt="">
+								<img src="{% static '1/images/content/special-photo-02.jpg' %}" alt="">
 							</div>
 							<div class="special-card-caption">
-								<div class="special-card-txt1">Love Yourself</div>
-								<div class="special-card-txt2">Offer</div>
-								<div class="special-card-txt3">Butt Lift or Tummy Tuck
-									<br>or 360 Liposuction</div>
-								<div><a href="schedule.html" class="btn"><i
-											class="icon-right-arrow"></i><span>Schedule</span><i
-											class="icon-right-arrow"></i></a></div>
+								<div class="special-card-txt1">Título 1</div>
+								<div class="special-card-txt2">Subtitulo 1</div>
+								<div class="special-card-txt3">Ejemplo<br>1</div>
+								<div><a href="contact.html" class="btn">
+										<i class="icon-right-arrow"></i><span>Botón 1</span>
+										<i class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
 					</div>
@@ -892,15 +922,36 @@
 								<img src="{% static '1/images/content/special-photo-02.jpg' %}" alt="">
 							</div>
 							<div class="special-card-caption">
-								<div class="special-card-txt1">Breast</div>
-								<div class="special-card-txt2">Augmentation</div>
-								<div class="special-card-txt3">All inclusive include implants
-									<br>and all fees for specific dates</div>
-								<div><a href="contact.html" class="btn"><i class="icon-right-arrow"></i><span>Contact
-											now</span><i class="icon-right-arrow"></i></a></div>
+								<div class="special-card-txt1">Título 2</div>
+								<div class="special-card-txt2">Subtitulo 2</div>
+								<div class="special-card-txt3">Ejemplo<br>2</div>
+								<div><a href="contact.html" class="btn">
+										<i class="icon-right-arrow"></i><span>Botón 2</span>
+										<i class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
 					</div>
+					<div class="col-6">
+						<div class="special-card">
+							<div class="special-card-photo">
+								<div class="corner-ribbon-wrap">
+									<div class="corner-ribbon">
+										10%<span>OFF</span>
+									</div>
+								</div>
+								<img src="{% static '1/images/content/special-photo-02.jpg' %}" alt="">
+							</div>
+							<div class="special-card-caption">
+								<div class="special-card-txt1">Título 3</div>
+								<div class="special-card-txt2">Subtitulo 3</div>
+								<div class="special-card-txt3">Ejemplo<br>3</div>
+								<div><a href="contact.html" class="btn">
+										<i class="icon-right-arrow"></i><span>Botón 3</span>
+										<i class="icon-right-arrow"></i></a></div>
+							</div>
+						</div>
+					</div>
+					<!-- 
 					<div class="col-6">
 						<div class="special-card">
 							<div class="special-card-photo">
@@ -931,6 +982,8 @@
 							</div>
 						</div>
 					</div>
+					-->
+
 				</div>
 			</div>
 		</div>
@@ -942,40 +995,33 @@
 					<div class="col-md-7 col-lg-6 mt-2 mt-lg-0">
 						<div class="reviews-wrap-alt ml-auto d-flex flex-column justify-content-center">
 							<div class="title-wrap text-center text-md-right">
-								<div class="h-sub">What People Says</div>
-								<h2 class="h1">Patient <span class="theme-color">Testimonials</span></h2>
+								<div class="h-sub">Qué dicen de nosotros</div>
+								<h2 class="h1">Testimonios <span class="theme-color">profesionales</span></h2>
 							</div>
 							<div class="js-reviews-carousel reviews-carousel text-center text-md-right">
 								<div class="review">
-									<div class="star-rating"><span><i class="icon-star"></i><i class="icon-star"></i><i
-												class="icon-star"></i><i class="icon-star"></i><i
-												class="icon-star"></i></span></div>
-									<p class="review-text">You guys are all amazing! Everyone I have met at your office
-										is kind, thoughtful, and listens to me. Everyone is so friendly from the time
-										you walk in the door to the time you leave the office. </p>
-									<p><span class="review-author">- Wilmer Stevenson,</span> <span
-											class="review-author-position">Creative manager</span></p>
+									<div class="star-rating"><span><i class="icon-star"></i><i class="icon-star"></i>
+											<i class="icon-star"></i><i class="icon-star"></i>
+											<i class="icon-star"></i></span></div>
+									<p class="review-text">Testimonio 1. </p>
+									<p><span class="review-author">- Autor 1,</span>
+										<span class="review-author-position">Título 1</span></p>
 								</div>
 								<div class="review">
-									<div class="star-rating"><span><i class="icon-star"></i><i class="icon-star"></i><i
-												class="icon-star"></i><i class="icon-star"></i><i
-												class="icon-star"></i></span></div>
-									<p class="review-text">I Am very impressed with you all as well as being highly
-										proficient is absolutely adorable. I feel so relaxed in her capable hands and
-										hope to be her patient for a very long time! You are a fantastic team and I feel
-										very privileged to come to you all!!!</p>
-									<p><span class="review-author">- Wilmer Stevenson,</span> <span
-											class="review-author-position">Creative manager</span></p>
+									<div class="star-rating"><span><i class="icon-star"></i><i class="icon-star"></i>
+											<i class="icon-star"></i><i class="icon-star"></i>
+											<i class="icon-star"></i></span></div>
+									<p class="review-text">Testimonio 2.</p>
+									<p><span class="review-author">- Autor 2,</span> <span
+											class="review-author-position">Título 2</span></p>
 								</div>
 								<div class="review">
-									<div class="star-rating"><span><i class="icon-star"></i><i class="icon-star"></i><i
-												class="icon-star"></i><i class="icon-star"></i><i
-												class="icon-star"></i></span></div>
-									<p class="review-text">You guys are all amazing! Everyone I have met at your office
-										is kind, thoughtful, and listens to me. Everyone is so friendly from the time
-										you walk in the door to the time you leave the office. </p>
-									<p><span class="review-author">- Wilmer Stevenson,</span> <span
-											class="review-author-position">Creative manager</span></p>
+									<div class="star-rating"><span><i class="icon-star"></i><i class="icon-star"></i>
+											<i class="icon-star"></i><i class="icon-star"></i>
+											<i class="icon-star"></i></span></div>
+									<p class="review-text">Testimonio 3. </p>
+									<p><span class="review-author">- Autor 3,</span> <span
+											class="review-author-position">Título 3</span></p>
 								</div>
 							</div>
 						</div>
@@ -1000,7 +1046,7 @@
 		<div class="section">
 			<div class="container">
 				<div class="title-wrap text-center">
-					<h2 class="h1">From the Blog</h2>
+					<h2 class="h1">Nuestro blog</h2>
 					<div class="h-decor"></div>
 				</div>
 				<div class="blog-grid-full blog-grid-carousel-full js-blog-grid-carousel-full mt-3 mb-0 row">
@@ -1133,19 +1179,20 @@
 		<div class="section">
 			<div class="container-fluid px-0">
 				<div class="banner-center banner-center--p-sm bg-cover"
-					style='background-image: url({% static "images/content/banner-center-02.jpg" %})'>
+					style='background-image: url({% static "1/images/content/banner-center-02.jpg" %})'>
 					<div class="banner-center-caption text-center">
-						<div class="banner-center-text1">Trust Your Appearance to Us</div>
-						<div class="banner-center-text4">Choose The Right Procedure For You</div>
+						<div class="banner-center-text1">Confía en la tecnología</div>
+						<div class="banner-center-text4">Nosotros nos encargamos de su gestión</div>
 						<a href="#" class="btn btn-white btn-hover-fill mt-2 mt-sm-3 mt-lg-5" data-toggle="modal"
-							data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>Request an
-								appointment</span><i class="icon-right-arrow"></i></a>
+							data-target="#modalBookingForm"><i class="icon-right-arrow"></i>
+							<span>Leer más</span><i class="icon-right-arrow"></i></a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!--//section-->
 		<!--section call us-->
+		<!-- 
 		<div class="section mt-5">
 			<div class="container">
 				<div class="banner-call">
@@ -1159,8 +1206,7 @@
 									We believe in providing the best possible care to all our existing patients and
 									welcome new patients to sample the service we have to offer. </p>
 								<div class="mt-2 mt-lg-4">
-									<a href="#" class="banner-call-phone"><i
-											class="icon-telephone"></i>Cel: 900000000</a>
+									<a href="#" class="banner-call-phone"><i class="icon-telephone"></i>{{ text_cel }}</a>
 								</div>
 							</div>
 						</div>
@@ -1170,7 +1216,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
+		-->
 		<!--//section call us-->
 	</div>
 	<!--footer-->
@@ -1185,14 +1232,14 @@
 							</div>
 							<div class="mt-2 mt-lg-0"></div>
 							<div class="footer-social d-lg-none">
-								<a href="https://www.facebook.com/" target="blank" class="hovicon"><i
-										class="icon-facebook-logo"></i></a>
-								<a href="https://www.twitter.com/" target="blank" class="hovicon"><i
-										class="icon-twitter-logo"></i></a>
-								<a href="https://plus.google.com/" target="blank" class="hovicon"><i
-										class="icon-google-logo"></i></a>
-								<a href="https://www.instagram.com/" target="blank" class="hovicon"><i
-										class="icon-instagram"></i></a>
+								<a href="https://www.facebook.com/" target="blank" class="hovicon">
+									<i class="icon-facebook-logo"></i></a>
+								<a href="https://www.twitter.com/" target="blank" class="hovicon">
+									<i class="icon-twitter-logo"></i></a>
+								<a href="https://plus.google.com/" target="blank" class="hovicon">
+									<i class="icon-google-logo"></i></a>
+								<a href="https://www.instagram.com/" target="blank" class="hovicon">
+									<i class="icon-instagram"></i></a>
 							</div>
 						</div>
 						<div class="col-md">
@@ -1225,7 +1272,8 @@
 					<div class="h-decor"></div>
 					<div class="footer-post d-flex">
 						<div class="footer-post-photo"><img
-								src="{% static '1/images/content/footer-post-author-03.jpg' %}" alt="" class="img-fluid">
+								src="{% static '1/images/content/footer-post-author-03.jpg' %}" alt=""
+								class="img-fluid">
 						</div>
 						<div class="footer-post-text">
 							<div class="footer-post-title"><a href="post.html">Medications & Oral Health</a></div>
@@ -1234,7 +1282,8 @@
 					</div>
 					<div class="footer-post d-flex">
 						<div class="footer-post-photo"><img
-								src="{% static '1/images/content/footer-post-author-01.jpg' %}" alt="" class="img-fluid">
+								src="{% static '1/images/content/footer-post-author-01.jpg' %}" alt=""
+								class="img-fluid">
 						</div>
 						<div class="footer-post-text">
 							<div class="footer-post-title"><a href="post.html">Smile For Your Health!</a></div>
@@ -1243,7 +1292,8 @@
 					</div>
 					<div class="footer-post d-flex">
 						<div class="footer-post-photo"><img
-								src="{% static '1/images/content/footer-post-author-02.jpg' %}" alt="" class="img-fluid">
+								src="{% static '1/images/content/footer-post-author-02.jpg' %}" alt=""
+								class="img-fluid">
 						</div>
 						<div class="footer-post-text">
 							<div class="footer-post-title"><a href="post.html">Tooth Fairy Traditions...</a></div>
@@ -1262,10 +1312,11 @@
 									class="icon-right-arrow"></i></a>
 						</li>
 						<li><i class="icon-telephone"></i><b><span class="phone"><span
-										class="text-nowrap">Cel: 900000000</span>, <span
-										class="text-nowrap">1-800-267-0001</span></span></b>
+										class="text-nowrap">{{ text_cel }}</span>, <span
+										class="text-nowrap">{{ text_cel_2 }}</span></span></b>
 							<br>(24/7 General inquiry)</li>
-						<li><i class="icon-black-envelope"></i><a href="mailto:a20145879@pucp.pe">a20145879@pucp.pe</a></li>
+						<li><i class="icon-black-envelope"></i><a href="mailto:{{ text_email }}">{{ text_email }}</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -1273,12 +1324,14 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row text-center text-md-left">
-					<div class="col-sm">Copyright © 2018 <a
-							href="#">DentCo</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-						<a href="#">Privacy Policy</a></div>
-					<div class="col-sm-auto ml-auto"><span class="d-none d-sm-inline">For emergency
-							cases&nbsp;&nbsp;&nbsp;</span><i
-							class="icon-telephone"></i>&nbsp;&nbsp;<b>Cel: 900000000</b></div>
+					<div class="col-sm">Copyright © 2020 <a
+							href="#">MedicPUCP</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+						<a href="#">Política de privacidad</a>
+					</div>
+					<div class="col-sm-auto ml-auto"><span class="d-none d-sm-inline">Soporte
+							inmediato&nbsp;&nbsp;&nbsp;</span>
+						<i class="icon-telephone"></i>&nbsp;&nbsp;<b>{{ text_cel }}</b>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -1340,6 +1393,7 @@
 				<button aria-label='Close' class='close' data-dismiss='modal'>
 					<i class="icon-error"></i>
 				</button>
+				<!-- 
 				<div class="modal-body">
 					<div class="modal-form">
 						<h3>Book an Appointment</h3>
@@ -1426,7 +1480,8 @@
 							</div>
 						</form>
 					</div>
-				</div>
+				</div> 
+				-->
 			</div>
 		</div>
 	</div>

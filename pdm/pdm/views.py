@@ -33,8 +33,23 @@ from django.db.models import F
 def index_view(request):
 
     # Variables de reporte mensual
-    cantidadPlatosMes = 900
-    porcentajeRespectoMesAnterior = 112.5
+    text1 = "Bienvenido a la plataforma virtual"
+    text2 = "Conoce "
+    text3 = "MedicPUCP"
+
+    text_kit_1 = "Ajustes unisex"
+    text_kit_2 = "Nuestro kit cuenta con correas que se ajustan a la anatomía tanto en el caso de los hombres como para las mujeres."
+    text_kit_3 = "Sensado no-invasivo"
+    text_kit_4 = "Los kits están diseñados para no ser invasivos y poder ser usados por el personal operativo."
+    text_kit_5 = "MedicSensor1"
+    text_kit_6 = "Gestiona 3 signos vitales elementales de forma inalámbrica: frecuencia respiratoria, presión cardíaca y temperatura corporal. Duración de hasta 12 horas por carga. Seguimiento en tiempo real."
+
+    text_cel = "Cel: 900000000"
+    text_cel_2 = "900000000"
+    text_email = "administrador@medicpucp.com"
+    text_address = "Dirección: - "
+    text_days = "Lun-Vie: 10:00 - 18:00 "
+    text_days_2 = "Sábado-Dom: 11:00 - 13:00"
 
     return render(request, 'index/index.html', locals())
 
@@ -44,8 +59,11 @@ def index_view(request):
 @login_required(login_url='/accounts/login')
 def dashboard_view(request):
 
+    page_title = "MedicPUCP v1 - D"
+    platform="MedicPUCP"
     nombre_vista = 'Dashboard'
     ruta_vista = ['Dashboard']
+    year=2020
 
     # Variables de reporte mensual
     cantidadPlatosMes = 900
@@ -72,3 +90,18 @@ def dashboard_view(request):
 
     return render(request, 'dashboard/dashboard.html', locals())
 # ----------------------- FIN DASHBOARD -----------------
+
+
+# -------------------- INICIO PERSONAL -----------------
+@login_required(login_url='/accounts/login')
+def personal_view(request):
+
+    page_title = "MedicPUCP v1 - P"
+    platform="MedicPUCP"
+    nombre_vista = 'Dashboard'
+    ruta_vista = ['Dashboard']
+    year=2020
+
+    return render(request, 'personal/personal.html', locals())
+
+# -------------------- FIN PERSONAL  -----------------

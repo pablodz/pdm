@@ -23,10 +23,10 @@ from django.conf.urls.static import static
 # Pages
 from pdm.views import index_view
 from pdm.views import dashboard_view
+from pdm.views import personal_view
 
 urlpatterns = [
 
-    
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     # -----------------INICIO INDEX----------------
@@ -34,7 +34,7 @@ urlpatterns = [
     # ------------------FIN INDEX------------------
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),
+    path('personal/', personal_view, name='personal-view'),
     # ------------------FIN DASHBOARD------------------
-
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
