@@ -23,6 +23,7 @@ to get the desired effect
 
         <div class="row">
             <div class="col-md-12">
+                {% comment %}
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Reporte económico mensual de ventas y compras</h5>
@@ -36,28 +37,15 @@ to get the desired effect
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
                                     <a href="#" class="dropdown-item">Falta agregar acciones</a>
-                                    <a class="dropdown-divider"></a> <!-- Es un divisor-->
+                                    <a class="dropdown-divider"></a> 
 
                                 </div>
                             </div>
-                            {% comment %}
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                            {% endcomment %}
                         </div>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-8">
-                                {% comment %} <div class="card-header border-0">
-                                    <div class="d-flex justify-content-between">
-                                        <h3 class="card-title"><strong>Compras, ventas e ingresos de la
-                                                semana</strong></h3>
-                                        <a href="javascript:void(0);">Ver completo</a>
-                                    </div>
-                                </div> {% endcomment %}
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <p class="d-flex flex-column">
@@ -71,7 +59,6 @@ to get the desired effect
                                             <span class="text-muted">Respecto al mes anterior</span>
                                         </p>
                                     </div>
-                                    <!-- /.d-flex -->
 
                                     <div class="position-relative mb-4">
                                         <canvas id="visitors-chart" height="200"></canvas>
@@ -90,7 +77,6 @@ to get the desired effect
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.col -->
                             <div class="col-md-4">
                                 <p class="text-center">
                                     <strong>Metas del mes</strong>
@@ -103,7 +89,6 @@ to get the desired effect
                                         <div class="progress-bar bg-primary" style="width: 80%"></div>
                                     </div>
                                 </div>
-                                <!-- /.progress-group -->
 
                                 <div class="progress-group">
                                     Cobrar pensiones
@@ -113,7 +98,6 @@ to get the desired effect
                                     </div>
                                 </div>
 
-                                <!-- /.progress-group -->
                                 <div class="progress-group">
                                     <span class="progress-text"> Visit Premium Page
                                     </span>
@@ -123,7 +107,6 @@ to get the desired effect
                                     </div>
                                 </div>
 
-                                <!-- /.progress-group -->
                                 <div class="progress-group">
                                     Send Inquiries
                                     <span class="float-right"><b>250</b>/500</span>
@@ -131,16 +114,11 @@ to get the desired effect
                                         <div class="progress-bar bg-warning" style="width: 50%"></div>
                                     </div>
                                 </div>
-                                <!-- /.progress-group -->
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
                     </div>
-                    <!-- ./card-body -->
                     <div class="card-footer">
                         <div class="row">
-
                             <div class="col-sm-3 col-6">
                                 <div class="description-block border-right">
                                     <span class="description-percentage text-warning">
@@ -150,9 +128,7 @@ to get the desired effect
                                     <h5 class="description-header">S/. {{montoComprasMesActual}}</h5>
                                     <span class="description-text">EN COMPRAS ESTE MES</span>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
-                            <!-- /.col -->
                             <div class="col-sm-3 col-6">
                                 <div class="description-block border-right">
                                     <span class="description-percentage text-success">
@@ -162,9 +138,7 @@ to get the desired effect
                                     <h5 class="description-header">S/. {{montoVentasMesActual}}</h5>
                                     <span class="description-text">EN VENTAS ESTE MES</span>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
-                            <!-- /.col -->
                             <div class="col-sm-3 col-6">
                                 <div class="description-block border-right">
                                     <span class="description-percentage text-success">
@@ -174,9 +148,7 @@ to get the desired effect
                                     <h5 class="description-header">S/. {{montoIngresosMesActual}}</h5>
                                     <span class="description-text">EN INGRESOS ESTE MES</span>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
-                            <!-- /.col -->
                             <div class="col-sm-3 col-6">
                                 <div class="description-block">
                                     <span class="description-percentage text-danger">
@@ -186,10 +158,8 @@ to get the desired effect
                                     <h5 class="description-header">S/. {{montoImpuestosMesActual}}</h5>
                                     <span class="description-text">EN IMPUESTOS ESTE MES</span>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
                         </div>
-                        <!-- /.row -->
                         <div class="row">
                             <div class="col center-block text-center">
                                 <a href="dashboard/reporte_economico" class="btn btn-sm btn-primary float-center">
@@ -197,13 +167,13 @@ to get the desired effect
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-footer -->
                 </div>
-                <!-- /.card -->
+                {% endcomment %}
                 <!-- TABLE: LATEST ORDERS -->
 
                 <div class="row">
                     <div class="col-md-8">
+                        {% comment %}
                         <div class="card">
                             <div class="card-header border-transparent">
                                 <h3 class="card-title">Productos agotándose</h3>
@@ -212,11 +182,6 @@ to get the desired effect
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    {% comment %}
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                    {% endcomment %}
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -234,8 +199,6 @@ to get the desired effect
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {% comment %} <td><a href="pages/examples/invoice.html">1</a></td>
-                                                {% endcomment %}
                                                 <td><a href="pages/examples/invoice.html">1</a></td>
                                                 <td>Arroz</td>
                                                 <td>
@@ -260,16 +223,16 @@ to get the desired effect
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer text-center">
-                                {% comment %} <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place
-                                    New Order</a> {% endcomment %}
                                 <a href="javascript:void(0)" class="btn btn-sm btn-primary float-center">Ver más</a>
                             </div>
                             <!-- /.card-footer -->
                         </div>
+                        {% endcomment %}
                     </div>
                     <!-- /.card -->
                     <div class="col-md-4">
                         <!-- COMPRAS LIST -->
+                        {% comment %}
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Últimas boletas de <strong>compra</strong></h3>
@@ -278,11 +241,6 @@ to get the desired effect
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    {% comment %}
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                    {% endcomment %}
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -322,12 +280,14 @@ to get the desired effect
                             </div>
                             <!-- /.card-footer -->
                         </div>
+                        {% endcomment %}
                     </div>
                     <!-- /.card -->
                 </div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-md-8">
+                        {% comment %}
                         <div class="card">
                             <!-- Header -->
                             <div class="card-header border-0">
@@ -376,11 +336,13 @@ to get the desired effect
                                 <a href="javascript:void(0)" class="btn btn-sm btn-primary float-center">Ver más</a>
                             </div>
                         </div>
+                        {% endcomment %}
                         <!-- /.card -->
                     </div>
                     <!-- /.card -->
                     <div class="col-md-4">
                         <!-- VENTAS RESTAURANTE LIST -->
+                        {% comment %}
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Últimas boletas de <strong>venta</strong></h3>
@@ -389,11 +351,6 @@ to get the desired effect
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    {% comment %}
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                    {% endcomment %}
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -433,6 +390,7 @@ to get the desired effect
                             </div>
                             <!-- /.card-footer -->
                         </div>
+                        {% endcomment %}
                     </div>
                     <!-- /.card -->
                 </div>
@@ -444,8 +402,6 @@ to get the desired effect
     <!-- /.container-fluid -->
 </div>
 <!-- /.content -->
-
-
 {% endblock contenido %}
 
 
