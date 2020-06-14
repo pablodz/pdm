@@ -249,14 +249,66 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <!-- Submenu -->
-
+                  <li class="nav-item">
+                    {% if nombre_vista == 'Dashboard'  %}
+                    <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
+                      {% else  %}
+                      <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
+                        {% endif  %}
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Resumen general</p>
+                      </a>
+                  </li>
                   <!-- Submenu -->
-
+                  <li class="nav-item">
+                    {% if nombre_vista == 'Dashboard | Reporte económico'  %}
+                    <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
+                      {% else  %}
+                      <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
+                        {% endif  %}
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Reporte económico</p>
+                      </a>
+                  </li>
 
                 </ul>
             </li>
+            </li>
 
-            <!-- Fin Editar-->
+            <!-- Lista de kits -->
+            {% if nombre_vista == 'Lista de kits' or nombre_vista == 'Lista de kits | Reporte económico' %}
+            <li class="nav-item has-treeview menu-open">
+              {% else  %}
+            <li class="nav-item has-treeview">
+              {% endif  %}
+              {% if nombre_vista == 'Lista de kits' or nombre_vista == 'Lista de kits | Reporte económico'  %}
+              <a href="#" class="nav-link active">
+                {% else  %}
+                <a href="#" class="nav-link">
+                  {% endif  %}
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Lista de kits
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <!-- Submenu -->
+                  <li class="nav-item">
+                    {% if nombre_vista == 'Lista de kits'  %}
+                    <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
+                      {% else  %}
+                      <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
+                        {% endif  %}
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Dispositivos operacionales</p>
+                      </a>
+                  </li>
+                  
+
+                </ul>
+            </li>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

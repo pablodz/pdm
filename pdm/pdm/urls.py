@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 from pdm.views import index_view
 from pdm.views import dashboard_view
 from pdm.views import personal_view
+from pdm.views import lista_kits_view
 
 urlpatterns = [
 
@@ -34,6 +35,9 @@ urlpatterns = [
     # ------------------FIN INDEX------------------
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),
+    path('dashboard/lista_kits/', lista_kits_view, name='lista-de-kits-view'),
+
+    
     path('personal/', personal_view, name='personal-view'),
     # ------------------FIN DASHBOARD------------------
 

@@ -86,6 +86,17 @@ def dashboard_view(request):
     maxItemTabla = 5
 
     return render(request, 'dashboard/dashboard.html', locals())
+
+
+@login_required(login_url='/accounts/login')
+def lista_kits_view(request):
+
+    nombre_vista = 'Dashboard | Lista de kits'
+    ruta_vista = ['Dashboard', 'Lista de kits']
+
+    return render(request,'dashboard/lista_kits.html',locals())
+
+
 # ----------------------- FIN DASHBOARD -----------------
 
 
