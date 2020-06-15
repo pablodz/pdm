@@ -186,6 +186,7 @@
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
+              <a href="#" class="btn btn-default btn-flat float-left">Editar Perfil</a>
               <a href="{% url 'logout' %}" class="btn btn-default btn-flat float-right">Cerrar Sesion</a>
             </li>
           </ul>
@@ -231,62 +232,50 @@
             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
             <!-- Resumen general -->
-            {% if nombre_vista == 'Dashboard' or nombre_vista == 'Dashboard | Reporte económico' %}
+            {% if nombre_vista == 'Dashboard | Resumen general' or nombre_vista == 'Dashboard | Resumen general' %}
             <li class="nav-item has-treeview menu-open">
               {% else  %}
             <li class="nav-item has-treeview">
               {% endif  %}
-              {% if nombre_vista == 'Dashboard' or nombre_vista == 'Dashboard | Reporte económico'  %}
+              {% if nombre_vista == 'Dashboard | Resumen general' or nombre_vista == 'Dashboard | Resumen general'  %}
               <a href="#" class="nav-link active">
                 {% else  %}
                 <a href="#" class="nav-link">
                   {% endif  %}
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fa fa-object-group"></i>
                   <p>
-                    Resúmenes
+                    Estadísticas
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <!-- Submenu -->
                   <li class="nav-item">
-                    {% if nombre_vista == 'Dashboard'  %}
-                    <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
+                    {% if nombre_vista == 'Dashboard | Resumen general'  %}
+                    <a href="{% url 'dashboard-view' %}" class="nav-link active">
                       {% else  %}
-                      <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
+                      <a href="{% url 'dashboard-view' %}" class="nav-link">
                         {% endif  %}
                         <i class="far fa-circle nav-icon"></i>
                         <p>Resumen general</p>
                       </a>
                   </li>
-                  <!-- Submenu -->
-                  <li class="nav-item">
-                    {% if nombre_vista == 'Dashboard | Reporte económico'  %}
-                    <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
-                      {% else  %}
-                      <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
-                        {% endif  %}
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Reporte económico</p>
-                      </a>
-                  </li>
-
+                 
                 </ul>
-            </li>
             </li>
 
             <!-- Lista de kits -->
-            {% if nombre_vista == 'Lista de kits' or nombre_vista == 'Lista de kits | Reporte económico' %}
+            {% if nombre_vista == 'Dashboard | Lista de kits' or nombre_vista == 'Dashboard | Lista de kits' %}
             <li class="nav-item has-treeview menu-open">
               {% else  %}
             <li class="nav-item has-treeview">
               {% endif  %}
-              {% if nombre_vista == 'Lista de kits' or nombre_vista == 'Lista de kits | Reporte económico'  %}
+              {% if nombre_vista == 'Dashboard | Lista de kits' or nombre_vista == 'Dashboard | Lista de kits'  %}
               <a href="#" class="nav-link active">
                 {% else  %}
                 <a href="#" class="nav-link">
                   {% endif  %}
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="nav-icon fa fa-sitemap"></i>
                   <p>
                     Lista de kits
                     <i class="right fas fa-angle-left"></i>
@@ -295,7 +284,7 @@
                 <ul class="nav nav-treeview">
                   <!-- Submenu -->
                   <li class="nav-item">
-                    {% if nombre_vista == 'Lista de kits'  %}
+                    {% if nombre_vista == 'Dashboard | Lista de kits'  %}
                     <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
                       {% else  %}
                       <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
@@ -304,10 +293,48 @@
                         <p>Dispositivos operacionales</p>
                       </a>
                   </li>
-                  
+
 
                 </ul>
             </li>
+
+
+            <!-- Personal -->
+            {% if nombre_vista == 'Dashboard | Personal' or nombre_vista == 'Dashboard | Personal' %}
+            <li class="nav-item has-treeview menu-open">
+              {% else  %}
+            <li class="nav-item has-treeview">
+              {% endif  %}
+              {% if nombre_vista == 'Dashboard | Personal' or nombre_vista == 'Dashboard | Personal'  %}
+              <a href="#" class="nav-link active">
+                {% else  %}
+                <a href="#" class="nav-link">
+                  {% endif  %}
+                  <i class="nav-icon fa fa-users"></i>
+                  <p>
+                    Personal
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <!-- Submenu -->
+                  <li class="nav-item">
+                    {% if nombre_vista == 'Dashboard | Personal'  %}
+                    <a href="{% url 'personal-historial-view' %}" class="nav-link active">
+                      {% else  %}
+                      <a href="{% url 'personal-historial-view' %}" class="nav-link">
+                        {% endif  %}
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Datos de personal</p>
+                      </a>
+                  </li>
+
+
+                </ul>
+            </li>
+
+
+
             </li>
           </ul>
         </nav>

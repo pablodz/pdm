@@ -61,8 +61,8 @@ def dashboard_view(request):
 
     page_title = "MedicPUCP v1 - D"
     platform="MedicPUCP"
-    nombre_vista = 'Dashboard'
-    ruta_vista = ['Dashboard']
+    nombre_vista = 'Dashboard | Resumen general'
+    ruta_vista = ['Dashboard', 'Resumen general']
     year=2020
 
     indicador1="17%"
@@ -94,7 +94,15 @@ def lista_kits_view(request):
     nombre_vista = 'Dashboard | Lista de kits'
     ruta_vista = ['Dashboard', 'Lista de kits']
 
-    return render(request,'dashboard/lista_kits.html',locals())
+    return render(request,'dashboard/estadisticas/lista_kits.html',locals())
+
+@login_required(login_url='/accounts/login')
+def personal_historial_view(request):
+
+    nombre_vista = 'Dashboard | Personal'
+    ruta_vista = ['Dashboard', 'Personal']
+
+    return render(request,'dashboard/estadisticas/personal.html',locals())
 
 
 # ----------------------- FIN DASHBOARD -----------------

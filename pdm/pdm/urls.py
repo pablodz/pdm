@@ -25,6 +25,7 @@ from pdm.views import index_view
 from pdm.views import dashboard_view
 from pdm.views import personal_view
 from pdm.views import lista_kits_view
+from pdm.views import personal_historial_view
 
 urlpatterns = [
 
@@ -36,6 +37,7 @@ urlpatterns = [
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),
     path('dashboard/lista_kits/', lista_kits_view, name='lista-de-kits-view'),
+    path('dashboard/personal/', personal_historial_view, name='personal-historial-view'),
 
     
     path('personal/', personal_view, name='personal-view'),
