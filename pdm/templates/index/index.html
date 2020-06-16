@@ -50,12 +50,12 @@
 					</div>
 					<div class="col-auto header-button-wrap ml-auto">
 						<!-- <a href="/personal/" class="btn" data-toggle="modal"> -->
-							<!-- data-target="#modalBookingForm" -->
-							<!-- <i class="icon-right-arrow"></i>Soy personal<i class="icon-right-arrow"></i> -->
+						<!-- data-target="#modalBookingForm" -->
+						<!-- <i class="icon-right-arrow"></i>Soy personal<i class="icon-right-arrow"></i> -->
 						<!-- </a> -->
 						<!-- <a href="/dashboard/" class="btn" data-toggle="modal"> -->
-							<!-- data-target="#modalBookingForm" -->
-							<!-- <i class="icon-right-arrow"></i>Soy administrativo <i class="icon-right-arrow"></i> -->
+						<!-- data-target="#modalBookingForm" -->
+						<!-- <i class="icon-right-arrow"></i>Soy administrativo <i class="icon-right-arrow"></i> -->
 						<!-- </a> -->
 					</div>
 				</div>
@@ -548,7 +548,7 @@
 		</div>
 		<!--//section-->
 		<!--section-->
-		<div class="section bg-grey py-0">
+		<!-- <div class="section bg-grey py-0">
 			<div class="container-fluid px-0">
 				<div class="row no-gutters flex-wrap flex-md-nowrap">
 					<div class="col-md-7 col-lg-6">
@@ -590,7 +590,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!--//section-->
 		<!--section achieved-->
 		<div class="section">
@@ -993,7 +993,7 @@
 		</div>
 		<!--//section special offers-->
 		<!--section testimonials-->
-		<div class="section bg-grey-dark py-0">
+		<!-- <div class="section bg-grey-dark py-0">
 			<div class="container">
 				<div class="row no-gutters">
 					<div class="col-md-7 col-lg-6 mt-2 mt-lg-0">
@@ -1044,7 +1044,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!--//section testimonials-->
 		<!--section blog posts -->
 		<div class="section">
@@ -1248,12 +1248,12 @@
 						</div>
 						<div class="col-md">
 							<div class="footer-text mt-1 mt-lg-2">
-								<p>To receive email releases, simply provide
-									<br>us with your email below</p>
+								<p>Para recibir nuestras noticias por correo
+									<br>ingrese su correo aquí</p>
 								<form action="#" class="footer-subscribe">
 									<div class="input-group">
 										<input name="subscribe_mail" type="text" class="form-control"
-											placeholder="Your Email" />
+											placeholder="example@example.com" />
 										<span><i class="icon-black-envelope"></i></span>
 									</div>
 								</form>
@@ -1263,8 +1263,8 @@
 										class="icon-facebook-logo"></i></a>
 								<a href="https://www.twitter.com/" target="blank" class="hovicon"><i
 										class="icon-twitter-logo"></i></a>
-								<a href="https://plus.google.com/" target="blank" class="hovicon"><i
-										class="icon-google-logo"></i></a>
+								<!-- <a href="https://plus.google.com/" target="blank" class="hovicon"><i
+										class="icon-google-logo"></i></a> -->
 								<a href="https://www.instagram.com/" target="blank" class="hovicon"><i
 										class="icon-instagram"></i></a>
 							</div>
@@ -1272,7 +1272,7 @@
 					</div>
 				</div>
 				<div class="col-sm-6 col-lg-4">
-					<h3>Blog Posts</h3>
+					<h3>Actividad en blog</h3>
 					<div class="h-decor"></div>
 					<div class="footer-post d-flex">
 						<div class="footer-post-photo"><img
@@ -1280,7 +1280,7 @@
 								class="img-fluid">
 						</div>
 						<div class="footer-post-text">
-							<div class="footer-post-title"><a href="post.html">Medications & Oral Health</a></div>
+							<div class="footer-post-title"><a href="post.html">Blog1</a></div>
 							<p>September 26, 2018</p>
 						</div>
 					</div>
@@ -1290,7 +1290,7 @@
 								class="img-fluid">
 						</div>
 						<div class="footer-post-text">
-							<div class="footer-post-title"><a href="post.html">Smile For Your Health!</a></div>
+							<div class="footer-post-title"><a href="post.html">Blog2</a></div>
 							<p>August 22, 2018</p>
 						</div>
 					</div>
@@ -1300,25 +1300,27 @@
 								class="img-fluid">
 						</div>
 						<div class="footer-post-text">
-							<div class="footer-post-title"><a href="post.html">Tooth Fairy Traditions...</a></div>
+							<div class="footer-post-title"><a href="post.html">Blog3</a></div>
 							<p>July 25, 2018</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6 col-lg-4">
-					<h3>Our Contacts</h3>
+					<h3>Contáctenos</h3>
 					<div class="h-decor"></div>
 					<ul class="icn-list">
-						<li><i class="icon-placeholder2"></i>1560 Holden Street San Diego, CA 92139
+						<li><i class="icon-placeholder2"><span>{{ text_address }}</span></i>
 							<br>
-							<a href="contact.html" class="btn btn-xs btn-gradient"><i
-									class="icon-placeholder2"></i><span>Get directions on the map</span><i
-									class="icon-right-arrow"></i></a>
+							<a href="contact.html" class="btn btn-xs btn-gradient">
+								<i class="icon-placeholder2">
+								</i>
+								<span>Ver mapa</span>
+								<i class="icon-right-arrow"></i></a>
 						</li>
 						<li><i class="icon-telephone"></i><b><span class="phone"><span
 										class="text-nowrap">{{ text_cel }}</span>, <span
 										class="text-nowrap">{{ text_cel_2 }}</span></span></b>
-							<br>(24/7 General inquiry)</li>
+							<br>(Atención telefónica 24/7)</li>
 						<li><i class="icon-black-envelope"></i><a href="mailto:{{ text_email }}">{{ text_email }}</a>
 						</li>
 					</ul>
@@ -1352,38 +1354,39 @@
 				</button>
 				<div class="modal-body">
 					<div class="modal-form">
-						<h3>Ask a Question</h3>
+						<h3>Haz una pregunta</h3>
 						<form class="mt-15" id="questionForm" method="post" novalidate>
 							<div class="successform">
-								<p>Your message was sent successfully!</p>
+								<p>Tu mensaje ha sido enviado correctamente!</p>
 							</div>
 							<div class="errorform">
-								<p>Something went wrong, try refreshing and submitting the form again.</p>
+								<p>Algo salió mal, intenta nuevamente en unos minutos.</p>
 							</div>
 							<div class="input-group">
 								<span>
 									<i class="icon-user"></i>
 								</span>
 								<input type="text" name="name" class="form-control" autocomplete="off"
-									placeholder="Your Name*" />
+									placeholder="Ingresa tu nombre*" />
 							</div>
 							<div class="input-group">
 								<span>
 									<i class="icon-email2"></i>
 								</span>
 								<input type="text" name="email" class="form-control" autocomplete="off"
-									placeholder="Your Email*" />
+									placeholder="Ingresa tu correo*" />
 							</div>
 							<div class="input-group">
 								<span>
 									<i class="icon-smartphone"></i>
 								</span>
 								<input type="text" name="phone" class="form-control" autocomplete="off"
-									placeholder="Your Phone" />
+									placeholder="Ingresa tu celular" />
 							</div>
-							<textarea name="message" class="form-control" placeholder="Your comment*"></textarea>
+							<textarea name="message" class="form-control"
+								placeholder="Escribe aquí tu mensaje*"></textarea>
 							<div class="text-right mt-2">
-								<button type="submit" class="btn btn-sm btn-hover-fill">Ask Now</button>
+								<button type="submit" class="btn btn-sm btn-hover-fill">Preguntar</button>
 							</div>
 						</form>
 					</div>
