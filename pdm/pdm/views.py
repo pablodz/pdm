@@ -85,7 +85,7 @@ def dashboard_view(request):
     # sumaBoletasComprasMes=PlatoHijoVenta.objects.raw('SELECT MIN(id) AS id, MAX(id_boleta_venta_restaurante) AS id_boleta_venta_restaurante, SUM(precio_venta) AS precio_total,  COUNT(*) AS nro_productos  FROM plato_hijo_venta GROUP BY id_boleta_venta_restaurante ORDER BY id_boleta_venta_restaurante DESC;')
     maxItemTabla = 5
 
-    return render(request, 'dashboard/dashboard.html', locals())
+    return render(request, 'dashboard/estadisticas/dashboard.html', locals())
 
 
 @login_required(login_url='/accounts/login')
@@ -94,7 +94,7 @@ def lista_kits_view(request):
     nombre_vista = 'Dashboard | Lista de kits'
     ruta_vista = ['Dashboard', 'Lista de kits']
 
-    return render(request,'dashboard/estadisticas/lista_kits.html',locals())
+    return render(request,'dashboard/kits/lista_kits.html',locals())
 
 @login_required(login_url='/accounts/login')
 def personal_historial_view(request):
@@ -102,7 +102,7 @@ def personal_historial_view(request):
     nombre_vista = 'Dashboard | Personal'
     ruta_vista = ['Dashboard', 'Personal']
 
-    return render(request,'dashboard/estadisticas/personal.html',locals())
+    return render(request,'dashboard/personal/personal.html',locals())
 
 
 # ----------------------- FIN DASHBOARD -----------------
