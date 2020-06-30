@@ -57,6 +57,11 @@ MIDDLEWARE = [
     # Heroku
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+#### IFRAME
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+####
+
 
 ROOT_URLCONF = 'pdm.urls'
 
@@ -162,3 +167,5 @@ LOGOUT_REDIRECT_URL = '/accounts/login'
 os.environ["DJANGO_SETTINGS_MODULE"] = "pdm.settings"
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+
