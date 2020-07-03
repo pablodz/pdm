@@ -6,6 +6,7 @@ from . import views
 router = routers.DefaultRouter()
 # router.register(r'heroes', views.HeroViewSet)
 router.register(r'medic_hypertable',views.medichypertableViewSet)
+router.register(r'last_medic_hypertable',views.lastmedichypertableViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

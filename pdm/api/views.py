@@ -11,6 +11,9 @@ class medichypertableViewSet(viewsets.ModelViewSet):
      queryset = medic_hypertable.objects.all().order_by('time')
      serializer_class = medichypertableSerializer
 
+class lastmedichypertableViewSet(viewsets.ModelViewSet):
+     queryset = medic_hypertable.objects.raw('SELECT * FROM api_medic_hypertable ORDER BY time DESC LIMIT 1;')
+     serializer_class = medichypertableSerializer
 
 # class HeroViewSet(viewsets.ModelViewSet):
 #     queryset = Hero.objects.all().order_by('name')
