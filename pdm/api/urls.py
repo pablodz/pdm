@@ -1,12 +1,13 @@
 # myapi/urls.py
 from django.urls import include, path
 from rest_framework import routers
-from . import views
+from .views import medichypertableViewSet
+from .views import lastmedichypertableViewSet
 
 router = routers.DefaultRouter()
 # router.register(r'heroes', views.HeroViewSet)
-router.register(r'medic_hypertable',views.medichypertableViewSet)
-router.register(r'last_medic_hypertable',views.lastmedichypertableViewSet)
+router.register(r'all_data',medichypertableViewSet,'all_data')
+router.register(r'last_data',lastmedichypertableViewSet,'last_data')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
