@@ -8,6 +8,8 @@ user = "postgres"
 pwd = "postgres"
 
 
+kit_id_value=input('Ingrese código del kit: ')
+
 def make_connection():
 
     conn = psycopg2.connect(host=host,
@@ -21,7 +23,8 @@ def make_connection():
 
 def execute_query(conn, c, a1, a2, a3, a4):
 
-    query = ["""INSERT INTO api_medic_hypertable(time, kit_id, pres_card, frec_resp, temp_corp, caidas) VALUES (NOW(), '{}', {}, {}, {}, {}) ;""".format('AA0001', a1, a2, a3, a4),
+
+    query = ["""INSERT INTO api_medic_hypertable(time, kit_id, pres_card, frec_resp, temp_corp, caidas) VALUES (NOW(), '{}', {}, {}, {}, {}) ;""".format(kit_id_value, a1, a2, a3, a4),
              ]
     for m in range(len(query)):
         print(query[m])
@@ -31,27 +34,28 @@ def execute_query(conn, c, a1, a2, a3, a4):
 
 def generate_random_data(conn, c):
 
-    a1 = 20
-    a2 = 45
-    a3 = 36
-    a4 = 70
+    a1 = 85
+    a2 = 15
+    a3 = 37.2
+    a4 = 1
 
     iterations = int((1/0.05)*60*10*100000)
     print(iterations, end="\n")
 
     for i in range(iterations):
         a1 += random.uniform(-1, 1)
-        a2 += random.uniform(-2, 2)
-        a3 += random.uniform(-1, 1)
-        a4 += random.uniform(-4, 4)
+        a2 += random.uniform(-0.1, 0.1)
+        a3 += random.uniform(-0.1, 0.1)
+        a4 += random.randint(-1, 1)
         execute_query(conn, c, a1, a2, a3, a4)
 
-        if ((i % 200 == 0) and (i != 0)):
+        if ((i % 15 == 0) and (i != 0)):
 
-            close_connection(conn)
+            close_connection(conn)            
             conn = make_connection()
+            c = conn.cursor()
 
-        # time.sleep(0.05)
+        time.sleep(1)
         # print(i)
 
 
@@ -60,6 +64,7 @@ def close_connection(conn):
 
 
 if __name__ == "__main__":
+
     conn = make_connection()
     c = conn.cursor()
     generate_random_data(conn, c)

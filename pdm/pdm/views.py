@@ -46,8 +46,18 @@ def index_view(request):
     text_kit_2 = "Nuestro kit cuenta con correas que se ajustan a la anatomía tanto en el caso de los hombres como para las mujeres."
     text_kit_3 = "Sensado no-invasivo"
     text_kit_4 = "Los kits están diseñados para no ser invasivos y poder ser usados por el personal operativo."
-    text_kit_5 = "MedicSensor1"
-    text_kit_6 = "Gestiona 3 signos vitales elementales de forma inalámbrica: frecuencia respiratoria, presión cardíaca y temperatura corporal. Duración de hasta 12 horas por carga. Seguimiento en tiempo real."
+    text_kit_5 = "MediKit"
+    text_kit_6 = "Gestiona 2 signos vitales elementales de forma inalámbrica: frecuencia respiratoria y temperatura corporal. Duración de hasta 12 horas por carga. Seguimiento en tiempo real."
+
+  
+    text_kit_7 = "MediBand"
+    text_kit_8 = "Gestiona el sensado de presión cardíaca."
+    text_kit_9 = "Sensado no-invasivo"
+    text_kit_10 = "Funciona con sensado no-invasivo con una duración de hasta 12 horas."
+    
+
+    vista_3d_medikit='https://a360.co/2Z5LKM0'
+    vista_3d_mediband='#'
 
     text_cel = "Cel: 900000000"
     text_cel_2 = "900000000"
