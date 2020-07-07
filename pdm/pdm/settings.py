@@ -61,7 +61,6 @@ MIDDLEWARE = [
 ]
 #### IFRAME
 X_FRAME_OPTIONS = 'SAMEORIGIN'
-
 ####
 
 

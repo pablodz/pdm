@@ -30,6 +30,8 @@ from django.db.models import F
 ##########################################################
 ### Allow iFrame
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.clickjacking import xframe_options_sameorigin
+
 # ------------------------ INICIO INDEX ------------------
 
 
@@ -126,3 +128,5 @@ def personal_view(request):
     return render(request, 'personal/personal.html', locals())
 
 # -------------------- FIN PERSONAL  -----------------
+
+

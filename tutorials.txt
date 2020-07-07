@@ -1,0 +1,5 @@
+
+
+django-rest-auth==0.9.5
+
+https://wsvincent.com/django-rest-framework-authentication-tutorial/ DJANGO OAUTH
