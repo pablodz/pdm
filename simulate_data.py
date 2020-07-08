@@ -36,7 +36,7 @@ def generate_random_data(conn, c):
 
     a1 = 85
     a2 = 15
-    a3 = 37.2
+    a3 = 40
     a4 = 1
 
     iterations = int((1/0.05)*60*10*100000)
