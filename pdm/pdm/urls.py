@@ -26,6 +26,7 @@ from pdm.views import dashboard_view
 from pdm.views import personal_view
 from pdm.views import lista_kits_view
 from pdm.views import personal_historial_view
+from pdm.views import pdp_view
 
 
 
@@ -35,6 +36,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # -----------------INICIO INDEX----------------
     path('', index_view, name='main-view'),
+    path('pdp/',pdp_view,name='pdp')
     # ------------------FIN INDEX------------------
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),

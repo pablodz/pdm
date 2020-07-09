@@ -68,6 +68,12 @@ def index_view(request):
 
     return render(request, 'index/index.html', locals())
 
+
+def pdp_view(request):
+
+    
+    return render(request, 'index/pdp.html', locals())
+
 # -------------------------- FIN INDEX -------------------
 
 # -------------------- INICIO DASHBOARD -----------------
