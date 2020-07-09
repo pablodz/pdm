@@ -36,7 +36,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # -----------------INICIO INDEX----------------
     path('', index_view, name='main-view'),
-    path('pdp/',pdp_view,name='pdp')
+    path('pdp/',pdp_view,name='pdp'),
     # ------------------FIN INDEX------------------
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),
