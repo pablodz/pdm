@@ -55,7 +55,7 @@ urlpatterns = [
 
     # -----------------INICIO OAUTH----------------
     path('auth2/', include('rest_framework_social_oauth2.urls')),
-    path('auth/', login_rest_framework_view, name='login_auth_rest_framework'),
+    path('auth/login/', login_rest_framework_view, name='login_auth_rest_framework'),
     
     # -----------------FIN OAUTH----------------
 
