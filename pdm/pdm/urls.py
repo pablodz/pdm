@@ -21,12 +21,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # Pages
-from pdm.views import index_view
-from pdm.views import dashboard_view
-from pdm.views import personal_view
-from pdm.views import lista_kits_view
-from pdm.views import personal_historial_view
-from pdm.views import pdp_view
+from .views import index_view
+from .views import dashboard_view
+from .views import personal_view
+from .views import lista_kits_view
+from .views import personal_historial_view
+from .views import pdp_view
+
+# Oauth
+from .views import login_rest_framework_view
 
 
 
@@ -51,7 +54,9 @@ urlpatterns = [
     # ------------------FIN API------------------
 
     # -----------------INICIO OAUTH----------------
-    path('auth/', include('rest_framework_social_oauth2.urls')),
+    path('auth2/', include('rest_framework_social_oauth2.urls')),
+    path('auth/', login_rest_framework_view, name='login_auth_rest_framework'),
+    
     # -----------------FIN OAUTH----------------
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

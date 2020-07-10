@@ -47,9 +47,10 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     #OAUTH
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
+    'rest_framework.authtoken', #LOGIN
+    'oauth2_provider', #OAUTH
+    'social_django', #OAUTH
+    'rest_framework_social_oauth2', #OAUTH
 ]
 
 MIDDLEWARE = [
@@ -134,12 +135,14 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',        
+        'rest_framework.authentication.TokenAuthentication', #LOGIN
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'oauth2_provider.ext.rest_framework.OAuth2Authentication',  # django-oauth-toolkit < 1.0.0
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        'rest_framework.permissions.IsAuthenticated',  #LOGIN
+        # 'oauth2_provider.ext.rest_framework.OAuth2Authentication',  # django-oauth-toolkit < 1.0.0 #OAUTH
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0 #OAUTH
+        'rest_framework_social_oauth2.authentication.SocialAuthentication', #OAUTH
     ],
 }
 
