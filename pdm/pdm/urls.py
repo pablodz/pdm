@@ -30,6 +30,8 @@ from .views import pdp_view
 
 # Oauth
 from .views import login_rest_framework_view
+from .views import get_name_rest_framework_view
+from .views import get_kit_data_view
 
 
 
@@ -56,6 +58,8 @@ urlpatterns = [
     # -----------------INICIO OAUTH----------------
     path('auth2/', include('rest_framework_social_oauth2.urls')),
     path('auth/login/', login_rest_framework_view, name='login_auth_rest_framework'),
+    path('auth/logged/get_data_user/',get_name_rest_framework_view,name='get_data_user_rest_framework'),
+    path('auth/logged/get_user_kit_data/',get_kit_data_view,name='get_user_kit_data'),
     
     # -----------------FIN OAUTH----------------
 

@@ -45,6 +45,9 @@ from rest_framework.status import (
     HTTP_200_OK
 )
 from rest_framework.response import Response
+from .models import AuthtokenToken
+from .models import AuthUser
+from .models import ApiMedicKitPerUser
 
 # ------------------------ INICIO INDEX ------------------
 
@@ -164,14 +167,61 @@ def personal_view(request):
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def login_rest_framework_view(request):
+
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:
-        return Response({'error': 'Please provide both username and password'},status=HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Proporcione nombre de usuario y contraseña'},status=HTTP_400_BAD_REQUEST)
     user = authenticate(username=username, password=password)
     if not user:
         return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
     token, _ = Token.objects.get_or_create(user=user)
     return Response({'token': token.key},status=HTTP_200_OK)
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def get_name_rest_framework_view(request):
+    
+    # current_user = request.user
+    # print(current_user)
+    # return Response({'id':current_user.id,
+    #                 'username':current_user.username,
+    #                 'first_name':current_user.first_name,
+    #                 'last_name':current_user.last_name,
+    #                 'email':current_user.email,
+    #                     },status=HTTP_200_OK)    
+    token = request.data.get("token")
+    if token is None:
+        return Response({'error': 'Porfavor envia un token válido'},status=HTTP_400_BAD_REQUEST)
+    user_by_token=AuthtokenToken.objects.get(pk=token)
+    id_user_by_token=user_by_token.user_id
+    if int(id_user_by_token) > 1:
+        user_data=AuthUser.objects.get(pk=id_user_by_token)
+        return Response({'id':user_data.id,
+                        'first_name':user_data.first_name,
+                        'last_name':user_data.last_name,
+                        'email':user_data.email,
+                        },status=HTTP_200_OK)
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def get_kit_data_view(request):
+    
+    token = request.data.get("token")
+    if token is None:
+        return Response({'error': 'Porfavor envia un token válido'},status=HTTP_400_BAD_REQUEST)
+    user_by_token=AuthtokenToken.objects.get(pk=token)
+    id_user_by_token=user_by_token.user_id
+    if int(id_user_by_token) > 1:
+        user_kit_data=ApiMedicKitPerUser.objects.get(user_id=id_user_by_token)
+        return Response({'kit_id':user_kit_data.kit_id,
+                        'user_id':user_kit_data.user_id,
+                        'estado_comunicacion':user_kit_data.estado_comunicacion,
+                        'estado_baterias':user_kit_data.estado_baterias,
+                        'tiempo_muestreo':user_kit_data.tiempo_muestreo,
+                        },status=HTTP_200_OK)
 
 # -------------------- FIN LOGIN REST_FRAMEWORK -----------------                    
