@@ -34,21 +34,21 @@ from .views import get_name_rest_framework_view
 from .views import get_kit_data_view
 
 
-
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     # -----------------INICIO INDEX----------------
     path('', index_view, name='main-view'),
-    path('pdp/',pdp_view,name='pdp'),
+    path('pdp/', pdp_view, name='pdp'),
     # ------------------FIN INDEX------------------
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),
     path('dashboard/lista_kits/', lista_kits_view, name='lista-de-kits-view'),
-    path('dashboard/personal/', personal_historial_view, name='personal-historial-view'),
+    path('dashboard/personal/', personal_historial_view,
+         name='personal-historial-view'),
 
-    
+
     path('personal/', personal_view, name='personal-view'),
     # ------------------FIN DASHBOARD------------------
     # -----------------INICIO API----------------
@@ -57,10 +57,13 @@ urlpatterns = [
 
     # -----------------INICIO OAUTH----------------
     path('auth2/', include('rest_framework_social_oauth2.urls')),
-    path('auth/login/', login_rest_framework_view, name='login_auth_rest_framework'),
-    path('auth/logged/get_data_user/',get_name_rest_framework_view,name='get_data_user_rest_framework'),
-    path('auth/logged/get_user_kit_data/',get_kit_data_view,name='get_user_kit_data'),
-    
+    path('auth/login/', login_rest_framework_view,
+         name='login_auth_rest_framework'),
+    path('auth/logged/get_data_user/', get_name_rest_framework_view,
+         name='get_data_user_rest_framework'),
+    path('auth/logged/get_user_kit_data/',
+         get_kit_data_view, name='get_user_kit_data'),
+
     # -----------------FIN OAUTH----------------
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

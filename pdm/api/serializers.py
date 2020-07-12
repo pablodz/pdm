@@ -17,4 +17,9 @@ class medichypertableSerializer(serializers.HyperlinkedModelSerializer):
 class lastmedichypertableSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = medic_hypertable
-        fields = ('time', 'kit_id','pres_card','frec_resp','temp_corp','caidas')        
+        fields = ('time', 'kit_id','pres_card','frec_resp','temp_corp','caidas')
+
+class lastmedicbykitidhypertableSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = medic_hypertable
+        fields = ('time', 'kit_id','pres_card','frec_resp','temp_corp','caidas')
