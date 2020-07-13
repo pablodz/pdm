@@ -2,7 +2,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.http import JsonResponse
 ###########################################################
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 ###########################################################
 
@@ -34,7 +34,8 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 
 ##########################################################
 # ALLOW REST_FRAMEWORK LOGIN
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
@@ -48,10 +49,28 @@ from rest_framework.response import Response
 from .models import AuthtokenToken
 from .models import AuthUser
 from .models import ApiMedicKitPerUser
+from .forms import SignUpForm
+from django.contrib import messages
+
+# ------------------------  INICIO LOGIN ------------------
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            messages.success(request, 'Nueva cuenta registrada satisfactoriamente.')
+            return redirect('signup')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/register.html', {'form':form})
+
+# ------------------------  FIN LOGIN ------------------
 
 # ------------------------ INICIO INDEX ------------------
-
-
 def index_view(request):
 
     # Variables de reporte mensual

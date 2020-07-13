@@ -20,6 +20,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# Login
+from .views import signup
+
 # Pages
 from .views import index_view
 from .views import dashboard_view
@@ -32,12 +35,17 @@ from .views import pdp_view
 from .views import login_rest_framework_view
 from .views import get_name_rest_framework_view
 from .views import get_kit_data_view
+from django.conf.urls import url
 
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    # -----------------INICIO LOGIN----------------
+    path('accounts/', include('django.contrib.auth.urls')), # No register auth builded
+    url(r'^accounts/register/$',signup,name='signup'),
+    # -----------------FIN LOGIN----------------
+
     # -----------------INICIO INDEX----------------
     path('', index_view, name='main-view'),
     path('pdp/', pdp_view, name='pdp'),
