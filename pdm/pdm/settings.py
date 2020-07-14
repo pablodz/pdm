@@ -30,6 +30,7 @@ SECRET_KEY = 'x9q@12a24zmsirgqqyxx%c04%j&3_$yy1uf&j10*7sd(zvsh+c'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+# '.ngrok.io',  # new value
 
 
 # Application definition

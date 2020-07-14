@@ -52,6 +52,11 @@ from .models import ApiMedicKitPerUser
 from .forms import SignUpForm
 from django.contrib import messages
 
+##########################################################
+# ALLOW TWILIO
+from twilio.rest import Client
+
+
 # ------------------------  INICIO LOGIN ------------------
 def signup(request):
     if request.method == 'POST':
@@ -242,3 +247,64 @@ def get_kit_data_view(request):
                          }, status=HTTP_200_OK)
 
 # -------------------- FIN LOGIN REST_FRAMEWORK -----------------
+
+
+
+
+
+# -------------------- INICIO TWILIO REST API -----------------
+                         
+account_sid = "AC0d88ed0fdcad0a394549af4fb6e99b3e"
+auth_token = "1a32ae905f5c7208fed6819822df7436"
+client = Client(account_sid, auth_token)
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def get_grafana_webhook_view(request):
+
+    token = request.data.get("token")
+    if token is None:
+        return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
+    user_by_token = AuthtokenToken.objects.get(pk=token)
+    id_user_by_token = user_by_token.user_id
+    if int(id_user_by_token) > 1:
+        user_kit_data = ApiMedicKitPerUser.objects.get(
+            user_id=id_user_by_token)
+    return Response({'0':0}, status=HTTP_200_OK)
+
+
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def alarm_by_sms_view(request):
+
+    num_cel_servidor=11465185860+564340692
+    num_cel_verificado=51898256060+40182029
+    message = client.messages.create(
+         body='MedicPUCP: [TEXTO] ',
+         from_='+'+str(num_cel_servidor),
+         to='+'+str(num_cel_verificado)
+     )    
+
+    return Response({'response':message.sid},status=HTTP_200_OK)
+    # token = request.data.get("token")
+    # if token is None:
+    #     return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
+    # user_by_token = AuthtokenToken.objects.get(pk=token)
+    # id_user_by_token = user_by_token.user_id
+    # if int(id_user_by_token) > 1:
+    #     user_kit_data = ApiMedicKitPerUser.objects.get(
+    #         user_id=id_user_by_token)
+
+
+    #     return Response({'kit_id': user_kit_data.kit_id,
+    #                      'user_id': user_kit_data.user_id,
+    #                      'estado_comunicacion': user_kit_data.estado_comunicacion,
+    #                      'estado_baterias': user_kit_data.estado_baterias,
+    #                      'tiempo_muestreo': user_kit_data.tiempo_muestreo,
+    #                      }, status=HTTP_200_OK)
+
+# -------------------- FIN TWILIO REST API -----------------

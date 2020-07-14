@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 
 # Heroku
 from django.conf import settings
@@ -35,7 +36,10 @@ from .views import pdp_view
 from .views import login_rest_framework_view
 from .views import get_name_rest_framework_view
 from .views import get_kit_data_view
-from django.conf.urls import url
+
+# Twilio
+from .views import get_grafana_webhook_view
+from .views import alarm_by_sms_view
 
 
 urlpatterns = [
@@ -73,5 +77,10 @@ urlpatterns = [
          get_kit_data_view, name='get_user_kit_data'),
 
     # -----------------FIN OAUTH----------------
+
+    # -----------------INICIO TWILIO----------------
+    path('auth/grafana/get_webhook',get_grafana_webhook_view,name='get_grafana_webhook_view'),
+    path('auth/logged/send_message/',alarm_by_sms_view,name='alarm_by_sms_view'),
+    # -----------------FIN TWILIO----------------
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
