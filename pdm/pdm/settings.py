@@ -207,8 +207,7 @@ LOGIN_REDIRECT_URL = '/dashboard'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 
+
 os.environ["DJANGO_SETTINGS_MODULE"] = "pdm.settings"
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-
-

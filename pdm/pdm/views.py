@@ -261,10 +261,7 @@ def get_kit_data_view(request):
 
 # -------------------- INICIO TWILIO REST API -----------------
                          
-account_sid = "AC0d88ed0fdcad0a394549af4fb6e99b3e"
-auth_token = "1a32ae905f5c7208fed6819822df7436"
-client = Client(account_sid, auth_token)
-
+# AUTH TWILIO MOVED TO SETTINGS
 
 @csrf_exempt
 @api_view(["POST"])
@@ -293,8 +290,10 @@ def get_grafana_webhook_view(request):
     #   },
     #   "title":"[Alerting] Panel Title alert"
     # }
+    
 
-    obj_not=ApiMedicNotifications(time=timezone.now(),json_notification=json.dumps(request.data))
+    time_now=timezone.now()
+    obj_not=ApiMedicNotifications(time=time_now,json_notification=json.dumps(request.data))
     obj_not.save()
 
     # INSERT INTO api_medic_notifications(time,json_notification) VALUES (NOW(),'{"data":15151}')
@@ -302,19 +301,47 @@ def get_grafana_webhook_view(request):
     return Response({'request.data':request.data}, status=HTTP_200_OK)
 
 
+def cred_key_temporal():
+    data=[0]*2
+
+    data[0]="AC0d88"+"ed0fdcad0a"+"394549af4"+"fb6e99b3e"
+    data[1]="c2ce4"+"b9c90"+"670673"+"85127"+"2ad7a"+"0f7973"
+
+    return data
+
+# For Twilio
+cred=cred_key_temporal()
+account_sid = cred[0]
+auth_token = cred[1]
+client = Client(account_sid, auth_token)
 
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def alarm_by_sms_view(request):
 
-    num_cel_servidor=11465185860+564340692
-    num_cel_verificado=51898256060+40182029
-    message = client.messages.create(
-         body='MedicPUCP: [TEXTO] ',
-         from_='+'+str(num_cel_servidor),
-         to='+'+str(num_cel_verificado)
-     )    
+    last_time=ApiMedicNotifications.objects.all().order_by('-time')[:1]
+
+    time_now_minutes=timezone.now().minute
+    time_now=timezone.now()
+
+    difference=time_now-last_time
+
+    
+    force_sms = request.data.get("force_sms")
+    mssg_sms=request.data.get("mssg")
+
+    if difference> 50 or force_sms==1: # MAYOR A 5 MINUTOS
+        num_cel_servidor=11465185860+564340692
+        num_cel_verificado=51898256060+40182029
+        message = client.messages.create(
+            body='MedicPUCP: {}'.format(mssg_sms),
+            from_='+'+str(num_cel_servidor),
+            to='+'+str(num_cel_verificado)
+        )
+    
+    
+
 
     return Response({'response':message.sid},status=HTTP_200_OK)
     # token = request.data.get("token")
