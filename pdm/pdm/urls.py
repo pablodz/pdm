@@ -57,8 +57,7 @@ urlpatterns = [
     # -----------------INICIO DASHBOARD----------------
     path('dashboard/', dashboard_view, name='dashboard-view'),
     path('dashboard/lista_kits/', lista_kits_view, name='lista-de-kits-view'),
-    path('dashboard/personal/', personal_historial_view,
-         name='personal-historial-view'),
+    path('dashboard/personal/', personal_historial_view, name='personal-historial-view'),
 
 
     path('personal/', personal_view, name='personal-view'),
@@ -69,17 +68,14 @@ urlpatterns = [
 
     # -----------------INICIO OAUTH----------------
     path('auth2/', include('rest_framework_social_oauth2.urls')),
-    path('auth/login/', login_rest_framework_view,
-         name='login_auth_rest_framework'),
-    path('auth/logged/get_data_user/', get_name_rest_framework_view,
-         name='get_data_user_rest_framework'),
-    path('auth/logged/get_user_kit_data/',
-         get_kit_data_view, name='get_user_kit_data'),
+    path('auth/login/', login_rest_framework_view, name='login_auth_rest_framework'),
+    path('auth/logged/get_data_user/', get_name_rest_framework_view, name='get_data_user_rest_framework'),
+    path('auth/logged/get_user_kit_data/', get_kit_data_view, name='get_user_kit_data'),
 
     # -----------------FIN OAUTH----------------
 
     # -----------------INICIO TWILIO----------------
-    path('auth/grafana/get_webhook',get_grafana_webhook_view,name='get_grafana_webhook_view'),
+    path('auth/grafana/get_webhook/',get_grafana_webhook_view,name='get_grafana_webhook_view'),
     path('auth/logged/send_message/',alarm_by_sms_view,name='alarm_by_sms_view'),
     # -----------------FIN TWILIO----------------
 

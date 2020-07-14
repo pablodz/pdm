@@ -53,6 +53,13 @@ from .forms import SignUpForm
 from django.contrib import messages
 
 ##########################################################
+# ALLOW WEBHOOK GRAFANA
+from .models import ApiMedicNotifications
+from django.utils import timezone
+from rest_framework.utils import json
+
+
+##########################################################
 # ALLOW TWILIO
 from twilio.rest import Client
 
@@ -264,15 +271,35 @@ client = Client(account_sid, auth_token)
 @permission_classes((AllowAny,))
 def get_grafana_webhook_view(request):
 
-    token = request.data.get("token")
-    if token is None:
-        return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
-    user_by_token = AuthtokenToken.objects.get(pk=token)
-    id_user_by_token = user_by_token.user_id
-    if int(id_user_by_token) > 1:
-        user_kit_data = ApiMedicKitPerUser.objects.get(
-            user_id=id_user_by_token)
-    return Response({'0':0}, status=HTTP_200_OK)
+    # {
+    #   "dashboardId":1,
+    #   "evalMatches":[
+    #     {
+    #       "value":1,
+    #       "metric":"Count",
+    #       "tags":{}
+    #     }
+    #   ],
+    #   "imageUrl":"https://grafana.com/static/assets/img/blog/mixed_styles.png",
+    #   "message":"Notification Message",
+    #   "orgId":1,
+    #   "panelId":2,
+    #   "ruleId":1,
+    #   "ruleName":"Panel Title alert",
+    #   "ruleUrl":"http://localhost:3000/d/hZ7BuVbWz/test-dashboard?fullscreen\u0026edit\u0026tab=alert\u0026panelId=2\u0026orgId=1",
+    #   "state":"alerting",
+    #   "tags":{
+    #     "tag name":"tag value"
+    #   },
+    #   "title":"[Alerting] Panel Title alert"
+    # }
+
+    obj_not=ApiMedicNotifications(time=timezone.now(),json_notification=json.dumps(request.data))
+    obj_not.save()
+
+    # INSERT INTO api_medic_notifications(time,json_notification) VALUES (NOW(),'{"data":15151}')
+
+    return Response({'request.data':request.data}, status=HTTP_200_OK)
 
 
 

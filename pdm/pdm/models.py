@@ -9,6 +9,8 @@
 from django.db import models
 
 
+# CLASS HYPERTABLE IN APP API
+
 class ApiMedicKitPerUser(models.Model):
     kit_id = models.TextField(primary_key=True)
     user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
@@ -19,6 +21,16 @@ class ApiMedicKitPerUser(models.Model):
     class Meta:
         managed = False
         db_table = 'api_medic_kit_per_user'
+
+
+class ApiMedicNotifications(models.Model):
+    time = models.DateTimeField(primary_key=True)
+    json_notification = models.TextField(blank=True, null=True)  # This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'api_medic_notifications'
+
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
