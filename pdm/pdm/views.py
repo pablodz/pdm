@@ -140,15 +140,15 @@ def dashboard_view(request):
     indicador4 = "18%"
     indicador4_porcentaje = "15"
 
-    # Para mostrar en tabla vamos a usar GROUPBY
-    # tutorial sacado de https://stackoverflow.com/a/629600/10491422
-    # tablaBoletasCompra = ProductoHijoCompra.objects.raw(
-    #     'SELECT MIN(id) AS id,MAX(id_boleta_compra) AS id_boleta_compra, SUM(precio) AS precio_total, COUNT(*) AS nro_productos FROM producto_hijo_compra GROUP BY id_boleta_compra ORDER BY id_boleta_compra DESC;')
-    # tablaBoletasVenta = PlatoHijoVenta.objects.raw(
-    #     'SELECT MIN(id) AS id, MAX(id_boleta_venta_restaurante) AS id_boleta_venta_restaurante, SUM(precio_venta) AS precio_total,  COUNT(*) AS nro_productos  FROM plato_hijo_venta GROUP BY id_boleta_venta_restaurante ORDER BY id_boleta_venta_restaurante DESC;')
-    # sumaBoletasVentasMes=
-    # sumaBoletasComprasMes=PlatoHijoVenta.objects.raw('SELECT MIN(id) AS id, MAX(id_boleta_venta_restaurante) AS id_boleta_venta_restaurante, SUM(precio_venta) AS precio_total,  COUNT(*) AS nro_productos  FROM plato_hijo_venta GROUP BY id_boleta_venta_restaurante ORDER BY id_boleta_venta_restaurante DESC;')
     maxItemTabla = 5
+
+    list_last_notifications=ApiMedicNotifications.objects.all().order_by('-time')[:10]
+
+    # user_by_kit=ApiMedicKitPerUser.objects.all(kit_id=str(list_last_notifications.json_notification.evalMatches[0].metric))
+    # user_data=AuthUser.objects.all(id=str(user_by_kit.first_name+user_by_kit.last_name))
+
+    
+    
 
     return render(request, 'dashboard/estadisticas/dashboard.html', locals())
 
@@ -325,17 +325,17 @@ def alarm_by_sms_view(request):
     time_now_minutes=timezone.now().minute
     time_now=timezone.now()
 
-    difference=time_now-last_time
+    # difference=time_now-last_time
 
     
     force_sms = request.data.get("force_sms")
-    mssg_sms=request.data.get("mssg")
+    mssg_sms=request.data.get("mssg_sms")
 
-    if difference> 50 or force_sms==1: # MAYOR A 5 MINUTOS
+    if force_sms==1: # MAYOR A 5 MINUTOS
         num_cel_servidor=11465185860+564340692
         num_cel_verificado=51898256060+40182029
         message = client.messages.create(
-            body='MedicPUCP: {}'.format(mssg_sms),
+            body='MedicPUCP: {}'.format(str(mssg_sms)),
             from_='+'+str(num_cel_servidor),
             to='+'+str(num_cel_verificado)
         )

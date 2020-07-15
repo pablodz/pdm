@@ -34,10 +34,10 @@ def execute_query(conn, c, a1, a2, a3, a4):
 
 def generate_random_data(conn, c):
 
-    a1 = 85
-    a2 = 15
-    a3 = 37.5
-    a4 = 1
+    a1 = 120
+    a2 = 30
+    a3 = 42
+    a4 = 0
 
     iterations = int((1/0.05)*60*10*100000)
     print(iterations, end="\n")
@@ -46,12 +46,12 @@ def generate_random_data(conn, c):
         a1 += random.uniform(-1, 1)
         a2 += random.uniform(-0.1, 0.1)
         a3 += random.uniform(-0.1, 0.1)
-        a4 += random.randint(-1, 1)
+        a4 += 0
         execute_query(conn, c, a1, a2, a3, a4)
 
         if ((i % 15 == 0) and (i != 0)):
 
-            close_connection(conn)            
+            close_connection(conn)
             conn = make_connection()
             c = conn.cursor()
 
