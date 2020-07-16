@@ -144,50 +144,39 @@ def dashboard_view(request):
 
     list_last_notifications=ApiMedicNotifications.objects.all().order_by('-time')[:10]
     
-    # list_dni=[0]*10
-    # counter=0
-    # for item in list_last_notifications:
-    #     data=item.json_notification['evalMatches']
-    #     for x in data:
-    #         list_dni[counter]=str(x['metric'])
-    #     counter+=1
-
-    # list_user_by_kit=[0]*10  
-    # counter=0
-    # for dni in list_dni:
-    #     user_by_kit=ApiMedicKitPerUser.objects.filter(kit_id='{}'.format(dni))
-    #     list_user_by_kit[counter]=user_by_kit
-    #     counter+=1
-
-    # print(list(list_user_by_kit))
-    
-    # for m in list_last_notifications:
-
-    # user_id=ApiMedicKitPerUser.objects.filter(kit_id=list_last_notifications.kit_id).select_related() 
-    # list_users=AuthUser.objects.filter(id=user_id).select_related() 
-
-        # user_data=AuthUser.objects.all(id=str(user_by_kit.first_name+user_by_kit.last_name))
+    list_kits=ApiMedicKitPerUser.objects.all()
 
     return render(request, 'dashboard/estadisticas/dashboard.html', locals())
 
 
 @login_required(login_url='/accounts/login')
-def lista_kits_view(request):
+def alertas_emitidas_view(request):
 
-    nombre_vista = 'Dashboard | Lista de kits'
-    ruta_vista = ['Dashboard', 'Lista de kits']
+    nombre_vista = 'Dashboard | Estadisticas a detalle | Alertas Emitidas'
+    ruta_vista = ['Dashboard', 'Estadisticas a detalle','Alertas Emitidas']
+    
+    list_last_notifications=ApiMedicNotifications.objects.all().order_by('-time')
 
-    return render(request, 'dashboard/kits/lista_kits.html', locals())
+    return render(request, 'dashboard/estadisticas_a_detalle/alertas_emitidas.html', locals())
 
+@login_required(login_url='/accounts/login')
+def lista_dispositivos_operativos_view(request):
+
+    nombre_vista = 'Dashboard | Estadisticas a detalle | Lista Dispositivos Operativos'
+    ruta_vista = ['Dashboard', 'Estadisticas a detalle','Lista Dispositivos Operativos']
+
+    list_kits=ApiMedicKitPerUser.objects.all()
+
+    return render(request, 'dashboard/estadisticas_a_detalle/lista_dispositivos_operativos.html', locals())
 
 @login_required(login_url='/accounts/login')
 @xframe_options_exempt
-def personal_historial_view(request):
+def informacion_tiempo_real_view(request):
 
-    nombre_vista = 'Dashboard | Personal'
-    ruta_vista = ['Dashboard', 'Personal']
+    nombre_vista = 'Dashboard | Información Tiempo Real'
+    ruta_vista = ['Dashboard', 'Información Tiempo Real']
 
-    return render(request, 'dashboard/personal/personal.html', locals())
+    return render(request, 'dashboard/personal/tiempo_real.html', locals())
 
 
 # ----------------------- FIN DASHBOARD -----------------

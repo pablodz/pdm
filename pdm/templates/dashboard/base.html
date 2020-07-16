@@ -266,68 +266,76 @@
                 </ul>
             </li>
 
-            <!-- Lista de kits -->
-            {% if nombre_vista == 'Dashboard | Lista de kits' or nombre_vista == 'Dashboard | Lista de kits' %}
+            <!-- Estadisticas a detalle -->
+            {% if nombre_vista == 'Dashboard | Estadisticas a detalle | Alertas Emitidas' or nombre_vista == 'Dashboard | Estadisticas a detalle | Lista Dispositivos Operativos' %}
             <li class="nav-item has-treeview menu-open">
               {% else  %}
             <li class="nav-item has-treeview">
               {% endif  %}
-              {% if nombre_vista == 'Dashboard | Lista de kits' or nombre_vista == 'Dashboard | Lista de kits'  %}
+              {% if nombre_vista == 'Dashboard | Estadisticas a detalle | Alertas Emitidas' or nombre_vista == 'Dashboard | Estadisticas a detalle | Lista Dispositivos Operativos'  %}
               <a href="#" class="nav-link active">
                 {% else  %}
                 <a href="#" class="nav-link">
                   {% endif  %}
                   <i class="nav-icon fa fa-sitemap"></i>
                   <p>
-                    Lista de kits
+                    Estadísticas a detalle
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <!-- Submenu -->
                   <li class="nav-item">
-                    {% if nombre_vista == 'Dashboard | Lista de kits'  %}
-                    <a href="{% url 'lista-de-kits-view' %}" class="nav-link active">
+                    {% if nombre_vista == 'Dashboard | Estadisticas a detalle | Alertas Emitidas'  %}
+                    <a href="{% url 'alertas-detalle-view' %}" class="nav-link active">
                       {% else  %}
-                      <a href="{% url 'lista-de-kits-view' %}" class="nav-link">
+                      <a href="{% url 'alertas-detalle-view' %}" class="nav-link">
                         {% endif  %}
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Dispositivos operacionales</p>
+                        <p>Alertas emitidas</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    {% if nombre_vista == 'Dashboard | Estadisticas a detalle | Lista Dispositivos Operativos'  %}
+                    <a href="{% url 'lista-dispositivos-operativos-view' %}" class="nav-link active">
+                      {% else  %}
+                      <a href="{% url 'lista-dispositivos-operativos-view' %}" class="nav-link">
+                        {% endif  %}
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Lista sensores operativos</p>
                       </a>
                   </li>
 
 
                 </ul>
             </li>
-
-
-            <!-- Personal -->
-            {% if nombre_vista == 'Dashboard | Personal' or nombre_vista == 'Dashboard | Personal' %}
+            <!-- Información Tiempo Real -->
+            {% if nombre_vista == 'Dashboard | Información Tiempo Real' or nombre_vista == 'Dashboard | Información Tiempo Real' %}
             <li class="nav-item has-treeview menu-open">
               {% else  %}
             <li class="nav-item has-treeview">
               {% endif  %}
-              {% if nombre_vista == 'Dashboard | Personal' or nombre_vista == 'Dashboard | Personal'  %}
+              {% if nombre_vista == 'Dashboard | Información Tiempo Real' or nombre_vista == 'Dashboard | Información Tiempo Real'  %}
               <a href="#" class="nav-link active">
                 {% else  %}
                 <a href="#" class="nav-link">
                   {% endif  %}
                   <i class="nav-icon fa fa-users"></i>
                   <p>
-                    Personal
+                    Información Tiempo Real
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <!-- Submenu -->
                   <li class="nav-item">
-                    {% if nombre_vista == 'Dashboard | Personal'  %}
-                    <a href="{% url 'personal-historial-view' %}" class="nav-link active">
+                    {% if nombre_vista == 'Dashboard | Información Tiempo Real'  %}
+                    <a href="{% url 'informacion-tiempo-real-view' %}" class="nav-link active">
                       {% else  %}
-                      <a href="{% url 'personal-historial-view' %}" class="nav-link">
+                      <a href="{% url 'informacion-tiempo-real-view' %}" class="nav-link">
                         {% endif  %}
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Datos de personal</p>
+                        <p>Datos de Información<br>Tiempo Real</p>
                       </a>
                   </li>
 

@@ -29,73 +29,66 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><strong>Historial de boletas de compra</strong></h3>
+                        <h3 class="card-title"><strong>Lista de dispositivos operativos</strong></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
                         <table id="tablaHistorial" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#Kit</th>
-                                    <th>Sensor</th>
-                                    <th>Cód. Usuario</th>
-                                    <th>Última conexión</th>
-                                    <th>Tiempo prendido</th>
-                                    <th>Forzar apagado</th>
-                                    <th>Estado</th>
+                                    <th>DNI</th>
+                                    <th>Nombre y Apellidos</th>
+                                    <th>Estado del equipo</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for boleta in tablaBoletas %}
-                                {% if  forloop.counter <= 1000 %}
+                                {% for kit in list_kits %}
                                 <tr>
+                                    <td>{{ kit.kit_id }}</td>
+                                    <td>{{ kit.user_id.last_name }}, {{ kit.user_id.first_name }}</td>
                                     <td>
-                                        <a href="#">{{boleta.boleta_compra}}</a>
-                                    </td>
-                                    <td>
-                                        {{boleta.boleta_compra.responsable}}
-                                    </td>
-                                    <td>
-                                        {{boleta.boleta_compra.proveedor.nombre}}
-                                    </td>
-                                    <td>
-                                        {{boleta.nro_productos}}
-                                    </td>
-                                    <td>
-                                        {{boleta.nro_productos}}
-                                    </td>
-                                    <td>
-                                        {% if boleta.boleta_compra.valido == True %}
-                                        <input class="switch" type="checkbox" name="my-checkbox" checked
-                                            data-bootstrap-switch data-on-text="SI" data-off-text="NO"
-                                            data-off-color="danger" data-on-color="success"
-                                            id="switch_{{boleta.boleta_compra.id}}" value="{{boleta.boleta_compra.id}}"
-                                            data-backdrop="static" data-keyboard="false">
+                                        <!-- MEDIKIT -->
+                                        <!-- MEDIKIT COMUNICACION -->
+                                        <strong>MediKit:</strong>
+                                        {% if kit.estado_comunicacion.estado_medikit == 'conectado y enviando data' %}
+                                        <span class="badge badge-success"> Comunicación: Conectado y enviando</span>
+                                        {% elif kit.estado_comunicacion.estado_medikit == 'conectado' %}
+                                        <span class="badge badge-info"> Comunicación: Conectado </span>
+                                        {% elif kit.estado_comunicacion.estado_medikit == 'conectando' %}
+                                        <span class="badge badge-warning"> Comunicación: Conectando...</span>
+                                        {% elif kit.estado_comunicacion.estado_medikit == 'sin conexion' %}
+                                        <span class="badge badge-danger"> Comunicación: Sin conexión</span>
                                         {% else %}
-                                        <input class="switch" type="checkbox" name="my-checkbox" data-bootstrap-switch
-                                            data-on-text="SI" data-off-text="NO" data-off-color="danger"
-                                            data-on-color="success" id="switch_{{boleta.boleta_compra.id}}"
-                                            value="{{boleta.boleta_compra.id}}" data-backdrop="static"
-                                            data-keyboard="false">
+                                        <span class="badge badge-danger"> ERROR:
+                                            {{ kit.estado_comunicacion.estado_medikit }}</span>
                                         {% endif %}
-                                    </td>
-                                    <td>
-                                        {{boleta.boleta_compra.fecha_modificado | date:"d/m/yy - H:i"}} Hrs
+                                        <!-- MEDIKIT BATERIA -->
+                                        <span class="badge badge-info">
+                                            Batería:{{ kit.estado_baterias.bateria_medikit }}%</span>
+
+                                        <hr>
+                                        <!-- MEDIBAND -->
+                                        <!-- MEDIBAND COMUNICACION -->
+                                        <strong>Mediband:</strong>
+                                        {% if kit.estado_comunicacion.estado_mediband == 'conectado y enviando data' %}
+                                        <span class="badge badge-success"> Comunicación: Conectado y enviando</span>
+                                        {% elif kit.estado_comunicacion.estado_mediband == 'conectado' %}
+                                        <span class="badge badge-info"> Comunicación: Conectado </span>
+                                        {% elif kit.estado_comunicacion.estado_mediband == 'conectando' %}
+                                        <span class="badge badge-warning"> Comunicación: Conectando...</span>
+                                        {% elif kit.estado_comunicacion.estado_mediband == 'sin conexion' %}
+                                        <span class="badge badge-danger"> Comunicación: Sin conexión</span>
+                                        {% else %}
+                                        <span class="badge badge-danger"> ERROR:
+                                            {{ kit.estado_comunicacion.estado_mediband }}</span>
+                                        {% endif %}
+                                        <!-- MEDIBAND BATERIA -->
+                                        <span class="badge badge-info">
+                                            Batería:{{ kit.estado_baterias.bateria_mediband }}%</span>
                                     </td>
                                 </tr>
-                                {% endif %}
                                 {% endfor %}
                             </tbody>
-                            {% comment %} <tfoot>
-                                <tr>
-                                    <th>Boleta</th>
-                                    <th>Comentarios</th>
-                                    <th>Fecha compra (D/M/Y)</th>
-                                    <th>Proveedor</th>
-                                    <th>Nro. de productos</th>
-                                    <th>Total (S/.)</th>
-                                </tr>
-                            </tfoot> {% endcomment %}
                         </table>
                     </div>
                     <!-- /.card-body -->
