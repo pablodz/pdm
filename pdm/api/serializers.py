@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # from api.models import Hero
-from .models import medic_hypertable
+from .models import ApiMedicHypertable
 
 # class HeroSerializer(serializers.HyperlinkedModelSerializer):
 #     class Meta:
@@ -11,15 +11,15 @@ from .models import medic_hypertable
 
 class medichypertableSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = medic_hypertable
+        model = ApiMedicHypertable
         fields = ('time', 'kit_id','pres_card','frec_resp','temp_corp','caidas')
 
 class lastmedichypertableSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = medic_hypertable
+        model = ApiMedicHypertable
         fields = ('time', 'kit_id','pres_card','frec_resp','temp_corp','caidas')
 
 class lastmedicbykitidhypertableSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = medic_hypertable
+        model = ApiMedicHypertable
         fields = ('time', 'kit_id','pres_card','frec_resp','temp_corp','caidas')

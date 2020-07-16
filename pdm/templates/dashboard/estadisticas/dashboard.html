@@ -55,18 +55,19 @@ to get the desired effect
                                         </thead>
                                         <tbody>
                                             {% for notification in list_last_notifications %}
-                                            {% if notification.json_notification.evalMatches.0.metric %}
                                             <tr>
+                                                
+                                                {% if notification.json_notification.evalMatches.0.metric %}
                                                 <td>{{ notification.time }}</td>
                                                 <td>{{ notification.json_notification.evalMatches.0.metric }}</td>
-                                                <td></td>
+                                                <td>{{ notification.kit }}</td>
                                                 <td>{{ notification.json_notification.message }}</td>
                                                 <td>
                                                     <span class="badge-danger">{{ notification.json_notification.evalMatches.0.value }}</span>
-                                                </td>
-                                            </tr>
-                                            {% endif %}
+                                                </td>                                                
+                                                {% endif %}                                            
                                             {% endfor %}
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -106,9 +107,31 @@ to get the desired effect
                                 </div>
                             </div>
                             <!-- /.card-header -->
+                            
                             <div class="card-body p-0">
-                                <div class="container-fluid">
-
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Hora y Fecha</th>
+                                                <th>DNI</th>
+                                                <th>Nombre y Apellido</th>
+                                                <th>Variable</th>
+                                                <th>valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <span class="badge-danger"></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>

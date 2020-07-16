@@ -83,24 +83,7 @@ Contributions are what make the open source community such an amazing place to b
 System: Web ([Heroku](https://www.github.com/zurmad/pdm)) + Web (Grafana - Not public yet) + App ([Flutter](https://www.github.com/zurmad/pdm-app))
 
 ### 2020-07-13 (Spanish for now)
-- [x] Asignar kid_id a usuarios. (Se creo tabla para manejar asociación - No automático)
-- [x] Enviar valores de batería. (Se tiene tabla que registra los valores)
-- [x] Enviar alertas al administrador.
-- [x] WEB: Cambiar variables a nombres, apellidos y DNI.
-- [x] WEB: Quitar pestañas anteriores que son irrelevantes o no aportan el valor deseado.
-- [x] APP: Añadir notificaciones de grafana.
-- [] Lograr interacción entre Django & Grafana.
-- [] Enviar alertas al usuario. (Quizás por Firebase como notificaciones)
-- [] WEB: Tener historial de alertas.
-- [] APP: Tener historial de alertas.  
-- [] WEB: Personas con presión arterial, frecuencia respiratoria o temperatura corporal anómala.
-- [] APP: Refresh automático de valores.
-- [] APP: Cambiar tiempos de muestreo por lista según app.
-- [] APP: Añadir loader mientras carga login token.
-- [] APP: Cambiar colores cuando estén o no dentro del rango saludable. (Sin API para no complicar)
-- [] APP: Cambiar fondos de imagenes con emoticones en el texto.
-- [] GRAFANA: Agregar batería al dashboard
-- [] Encuestar 5 personas que dirijan centros médicos para que pruebe nuestra plataforma.
+
 
 ### 2020-06-10
 

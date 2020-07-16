@@ -6,7 +6,7 @@ from .serializers import medichypertableSerializer
 from .serializers import lastmedichypertableSerializer
 from .serializers import lastmedicbykitidhypertableSerializer
 # from api.models import Hero
-from .models import medic_hypertable
+from .models import ApiMedicHypertable
 
 ##########################################################
 # ALLOW REST_FRAMEWORK LOGIN
@@ -30,12 +30,12 @@ from django.http import JsonResponse
 
 
 class medichypertableViewSet(viewsets.ModelViewSet):
-    queryset = medic_hypertable.objects.all().order_by('time')
+    queryset = ApiMedicHypertable.objects.all().order_by('time')
     serializer_class = medichypertableSerializer
 
 
 class lastmedichypertableViewSet(viewsets.ModelViewSet):
-    queryset = medic_hypertable.objects.all().order_by('-time')[:1]
+    queryset = ApiMedicHypertable.objects.all().order_by('-time')[:1]
     serializer_class = lastmedichypertableSerializer
 
 # ENDPOINTS WITH TOKENS
@@ -49,6 +49,6 @@ def get_kit_data_view(request):
         return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
     user_by_token = AuthtokenToken.objects.get(pk=token)
     user_kit_id = ApiMedicKitPerUser.objects.get(user_id=user_by_token.user_id)
-    data=medic_hypertable.objects.filter(kit_id=user_kit_id.kit_id).order_by('-time')[:1].values()
+    data=ApiMedicHypertable.objects.filter(kit_id=user_kit_id.kit_id).order_by('-time')[:1].values()
 
     return Response(list(data), status=HTTP_200_OK)

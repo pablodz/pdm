@@ -8,7 +8,7 @@
 from django.db import models
 
 
-class medic_hypertable(models.Model):
+class ApiMedicHypertable(models.Model):
     time = models.DateTimeField(primary_key=True)
     kit_id = models.TextField()
     pres_card = models.FloatField(blank=True, null=True)

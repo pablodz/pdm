@@ -143,12 +143,30 @@ def dashboard_view(request):
     maxItemTabla = 5
 
     list_last_notifications=ApiMedicNotifications.objects.all().order_by('-time')[:10]
-
-    # user_by_kit=ApiMedicKitPerUser.objects.all(kit_id=str(list_last_notifications.json_notification.evalMatches[0].metric))
-    # user_data=AuthUser.objects.all(id=str(user_by_kit.first_name+user_by_kit.last_name))
-
     
+    # list_dni=[0]*10
+    # counter=0
+    # for item in list_last_notifications:
+    #     data=item.json_notification['evalMatches']
+    #     for x in data:
+    #         list_dni[counter]=str(x['metric'])
+    #     counter+=1
+
+    # list_user_by_kit=[0]*10  
+    # counter=0
+    # for dni in list_dni:
+    #     user_by_kit=ApiMedicKitPerUser.objects.filter(kit_id='{}'.format(dni))
+    #     list_user_by_kit[counter]=user_by_kit
+    #     counter+=1
+
+    # print(list(list_user_by_kit))
     
+    # for m in list_last_notifications:
+
+    # user_id=ApiMedicKitPerUser.objects.filter(kit_id=list_last_notifications.kit_id).select_related() 
+    # list_users=AuthUser.objects.filter(id=user_id).select_related() 
+
+        # user_data=AuthUser.objects.all(id=str(user_by_kit.first_name+user_by_kit.last_name))
 
     return render(request, 'dashboard/estadisticas/dashboard.html', locals())
 
@@ -290,10 +308,15 @@ def get_grafana_webhook_view(request):
     #   },
     #   "title":"[Alerting] Panel Title alert"
     # }
-    
 
+    # print(request.data)
+    # data=request.data['evalMatches']
+    # for x in data:
+    #     m=x['metric']
+    # kit_id=m
+    apimedickit=ApiMedicKitPerUser.objects.get(kit_id='00000000')
     time_now=timezone.now()
-    obj_not=ApiMedicNotifications(time=time_now,json_notification=json.dumps(request.data))
+    obj_not=ApiMedicNotifications(time=time_now,json_notification=json.dumps(request.data),kit=apimedickit)
     obj_not.save()
 
     # INSERT INTO api_medic_notifications(time,json_notification) VALUES (NOW(),'{"data":15151}')

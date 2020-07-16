@@ -1,4 +1,3 @@
-
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -9,11 +8,22 @@
 from django.db import models
 
 
-# CLASS HYPERTABLE IN APP API
+class ApiMedicHypertable(models.Model):
+    time = models.DateTimeField()
+    kit_id = models.TextField()
+    pres_card = models.FloatField(blank=True, null=True)
+    frec_resp = models.FloatField(blank=True, null=True)
+    temp_corp = models.FloatField(blank=True, null=True)
+    caidas = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'api_medic_hypertable'
+
 
 class ApiMedicKitPerUser(models.Model):
     kit_id = models.TextField(primary_key=True)
-    user = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True)
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING)
     estado_comunicacion = models.TextField(blank=True, null=True)  # This field type is a guess.
     estado_baterias = models.TextField(blank=True, null=True)  # This field type is a guess.
     tiempo_muestreo = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -24,7 +34,7 @@ class ApiMedicKitPerUser(models.Model):
 
 
 class ApiMedicNotifications(models.Model):
-    time = models.DateTimeField(primary_key=True)
+    time = models.DateTimeField()
     json_notification = models.TextField(blank=True, null=True)  # This field type is a guess.
     kit = models.ForeignKey(ApiMedicKitPerUser, models.DO_NOTHING, db_column='kit')
 
@@ -282,4 +292,3 @@ class SocialAuthUsersocialauth(models.Model):
         managed = False
         db_table = 'social_auth_usersocialauth'
         unique_together = (('provider', 'uid'),)
-
