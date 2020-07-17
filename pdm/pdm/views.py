@@ -268,6 +268,24 @@ def get_kit_data_view(request):
                      }, status=HTTP_200_OK)
     
 
+
+@csrf_exempt
+@api_view(["POST"])
+@permission_classes((AllowAny,))
+def get_notifications_per_kit_id_view(request):
+
+    token = request.data.get("token")
+    if token is None:
+        return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
+    user_by_token = AuthtokenToken.objects.get(pk=token)
+    apimedickit = ApiMedicKitPerUser.objects.get(user_id=user_by_token.user_id)
+    notifications_per_kit_id = ApiMedicNotifications.objects.filter(kit=apimedickit.kit_id)
+    
+    tmpJson = serializers.serialize("json",notifications_per_kit_id)
+    tmpObj = json.loads(tmpJson)
+
+    return Response({'notifications':tmpObj}, status=HTTP_200_OK)    
+
 # -------------------- FIN LOGIN REST_FRAMEWORK -----------------
 
 

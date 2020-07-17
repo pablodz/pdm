@@ -37,6 +37,7 @@ from .views import pdp_view
 from .views import login_rest_framework_view
 from .views import get_name_rest_framework_view
 from .views import get_kit_data_view
+from .views import get_notifications_per_kit_id_view
 
 # Twilio
 from .views import get_grafana_webhook_view
@@ -73,6 +74,7 @@ urlpatterns = [
     path('auth/login/', login_rest_framework_view, name='login_auth_rest_framework'),
     path('auth/logged/get_data_user/', get_name_rest_framework_view, name='get_data_user_rest_framework'),
     path('auth/logged/get_user_kit_data/', get_kit_data_view, name='get_user_kit_data'),
+    path('auth/logged/get_notifications_per_kit_id/',get_notifications_per_kit_id_view,name='get_notifications_per_kit_id'),
 
     # -----------------FIN OAUTH----------------
 
