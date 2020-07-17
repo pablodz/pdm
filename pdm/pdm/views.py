@@ -74,15 +74,18 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            messages.success(request, 'Nueva cuenta registrada satisfactoriamente.')
+            messages.success(
+                request, 'Nueva cuenta registrada satisfactoriamente.')
             return redirect('signup')
     else:
         form = SignUpForm()
-    return render(request, 'registration/register.html', {'form':form})
+    return render(request, 'registration/register.html', {'form': form})
 
 # ------------------------  FIN LOGIN ------------------
 
 # ------------------------ INICIO INDEX ------------------
+
+
 def index_view(request):
 
     # Variables de reporte mensual
@@ -142,9 +145,10 @@ def dashboard_view(request):
 
     maxItemTabla = 5
 
-    list_last_notifications=ApiMedicNotifications.objects.all().order_by('-time')[:10]
-    
-    list_kits=ApiMedicKitPerUser.objects.all()
+    list_last_notifications = ApiMedicNotifications.objects.all().order_by(
+        '-time')[:10]
+
+    list_kits = ApiMedicKitPerUser.objects.all()
 
     return render(request, 'dashboard/estadisticas/dashboard.html', locals())
 
@@ -153,21 +157,24 @@ def dashboard_view(request):
 def alertas_emitidas_view(request):
 
     nombre_vista = 'Dashboard | Estadisticas a detalle | Alertas Emitidas'
-    ruta_vista = ['Dashboard', 'Estadisticas a detalle','Alertas Emitidas']
-    
-    list_last_notifications=ApiMedicNotifications.objects.all().order_by('-time')
+    ruta_vista = ['Dashboard', 'Estadisticas a detalle', 'Alertas Emitidas']
+
+    list_last_notifications = ApiMedicNotifications.objects.all().order_by('-time')
 
     return render(request, 'dashboard/estadisticas_a_detalle/alertas_emitidas.html', locals())
+
 
 @login_required(login_url='/accounts/login')
 def lista_dispositivos_operativos_view(request):
 
     nombre_vista = 'Dashboard | Estadisticas a detalle | Lista Dispositivos Operativos'
-    ruta_vista = ['Dashboard', 'Estadisticas a detalle','Lista Dispositivos Operativos']
+    ruta_vista = ['Dashboard', 'Estadisticas a detalle',
+                  'Lista Dispositivos Operativos']
 
-    list_kits=ApiMedicKitPerUser.objects.all()
+    list_kits = ApiMedicKitPerUser.objects.all()
 
     return render(request, 'dashboard/estadisticas_a_detalle/lista_dispositivos_operativos.html', locals())
+
 
 @login_required(login_url='/accounts/login')
 @xframe_options_exempt
@@ -233,11 +240,11 @@ def get_name_rest_framework_view(request):
     id_user_by_token = user_by_token.user_id
     if int(id_user_by_token) > 1:
         user_data = AuthUser.objects.get(pk=id_user_by_token)
-        return Response({'id': user_data.id,
-                         'first_name': user_data.first_name,
-                         'last_name': user_data.last_name,
-                         'email': user_data.email,
-                         }, status=HTTP_200_OK)
+    return Response({'id': user_data.id,
+                     'first_name': user_data.first_name,
+                     'last_name': user_data.last_name,
+                     'email': user_data.email,
+                     }, status=HTTP_200_OK)
 
 
 @csrf_exempt
@@ -249,86 +256,83 @@ def get_kit_data_view(request):
     if token is None:
         return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
     user_by_token = AuthtokenToken.objects.get(pk=token)
-    id_user_by_token = user_by_token.user_id
-    if int(id_user_by_token) > 1:
-        user_kit_data = ApiMedicKitPerUser.objects.get(
-            user_id=id_user_by_token)
-        return Response({'kit_id': user_kit_data.kit_id,
-                         'user_id': user_kit_data.user_id,
-                         'estado_comunicacion': user_kit_data.estado_comunicacion,
-                         'estado_baterias': user_kit_data.estado_baterias,
-                         'tiempo_muestreo': user_kit_data.tiempo_muestreo,
-                         }, status=HTTP_200_OK)
+    # id_user_by_token = user_by_token.user_id
+    user_data_selected = AuthUser.objects.get(id=user_by_token.user_id)
+    user_data_kit_selected = ApiMedicKitPerUser.objects.get(user_id=user_data_selected.id)
+
+    return Response({'kit_id': user_data_kit_selected.kit_id,
+                     'user_id': user_data_selected.id,
+                     'estado_comunicacion': user_data_kit_selected.estado_comunicacion,
+                     'estado_baterias': user_data_kit_selected.estado_baterias,
+                     'tiempo_muestreo': user_data_kit_selected.tiempo_muestreo,
+                     }, status=HTTP_200_OK)
+    
 
 # -------------------- FIN LOGIN REST_FRAMEWORK -----------------
 
 
-
-
-
 # -------------------- INICIO TWILIO REST API -----------------
-                         
+
 # AUTH TWILIO MOVED TO SETTINGS
 
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def get_grafana_webhook_view(request):
-    
-    kit_id_user=request.data.get('evalMatches')[0]['metric']
-    apimedickit=ApiMedicKitPerUser.objects.get(kit_id=str(kit_id_user))
-    time_now=timezone.now()
-    obj_not=ApiMedicNotifications(time=time_now,json_notification=json.dumps(request.data),kit=apimedickit)
+
+    kit_id_user = request.data.get('evalMatches')[0]['metric']
+    apimedickit = ApiMedicKitPerUser.objects.get(kit_id=str(kit_id_user))
+    time_now = timezone.now()
+    obj_not = ApiMedicNotifications(
+        time=time_now, json_notification=json.dumps(request.data), kit=apimedickit)
     obj_not.save()
 
     # INSERT INTO api_medic_notifications(time,json_notification) VALUES (NOW(),'{"data":15151}')
 
-    return Response({'request.data':request.data}, status=HTTP_200_OK)
+    return Response({'request.data': request.data}, status=HTTP_200_OK)
 
 
 def cred_key_temporal():
-    data=[0]*2
+    data = [0]*2
 
-    data[0]="AC0d88"+"ed0fdcad0a"+"394549af4"+"fb6e99b3e"
-    data[1]="c2ce4"+"b9c90"+"670673"+"85127"+"2ad7a"+"0f7973"
+    data[0] = "AC0d88"+"ed0fdcad0a"+"394549af4"+"fb6e99b3e"
+    data[1] = "c2ce4"+"b9c90"+"670673"+"85127"+"2ad7a"+"0f7973"
 
     return data
 
+
 # For Twilio
-cred=cred_key_temporal()
+cred = cred_key_temporal()
 account_sid = cred[0]
 auth_token = cred[1]
 client = Client(account_sid, auth_token)
+
 
 @csrf_exempt
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def alarm_by_sms_view(request):
 
-    last_time=ApiMedicNotifications.objects.all().order_by('-time')[:1]
+    last_time = ApiMedicNotifications.objects.all().order_by('-time')[:1]
 
-    time_now_minutes=timezone.now().minute
-    time_now=timezone.now()
+    time_now_minutes = timezone.now().minute
+    time_now = timezone.now()
 
     # difference=time_now-last_time
 
-    
     force_sms = request.data.get("force_sms")
-    mssg_sms=request.data.get("mssg_sms")
+    mssg_sms = request.data.get("mssg_sms")
 
-    if force_sms==1: # MAYOR A 5 MINUTOS
-        num_cel_servidor=11465185860+564340692
-        num_cel_verificado=51898256060+40182029
+    if force_sms == 1:  # MAYOR A 5 MINUTOS
+        num_cel_servidor = 11465185860+564340692
+        num_cel_verificado = 51898256060+40182029
         message = client.messages.create(
             body='MedicPUCP: {}'.format(str(mssg_sms)),
             from_='+'+str(num_cel_servidor),
             to='+'+str(num_cel_verificado)
         )
-    
-    
 
-
-    return Response({'response':message.sid},status=HTTP_200_OK)
+    return Response({'response': message.sid}, status=HTTP_200_OK)
     # token = request.data.get("token")
     # if token is None:
     #     return Response({'error': 'Porfavor envia un token válido'}, status=HTTP_400_BAD_REQUEST)
@@ -337,7 +341,6 @@ def alarm_by_sms_view(request):
     # if int(id_user_by_token) > 1:
     #     user_kit_data = ApiMedicKitPerUser.objects.get(
     #         user_id=id_user_by_token)
-
 
     #     return Response({'kit_id': user_kit_data.kit_id,
     #                      'user_id': user_kit_data.user_id,

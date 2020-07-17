@@ -13,7 +13,7 @@ from django.db import models
 
 class ApiMedicKitPerUser(models.Model):
     kit_id = models.TextField(primary_key=True)
-    user_id = models.ForeignKey('AuthUser', models.DO_NOTHING, blank=True, null=True, db_column='user_id')
+    user = models.ForeignKey('AuthUser', models.DO_NOTHING)
     estado_comunicacion = models.TextField(blank=True, null=True)  # This field type is a guess.
     estado_baterias = models.TextField(blank=True, null=True)  # This field type is a guess.
     tiempo_muestreo = models.TextField(blank=True, null=True)  # This field type is a guess.
