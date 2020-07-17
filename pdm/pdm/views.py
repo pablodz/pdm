@@ -274,36 +274,9 @@ def get_kit_data_view(request):
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def get_grafana_webhook_view(request):
-
-    # {
-    #   "dashboardId":1,
-    #   "evalMatches":[
-    #     {
-    #       "value":1,
-    #       "metric":"Count",
-    #       "tags":{}
-    #     }
-    #   ],
-    #   "imageUrl":"https://grafana.com/static/assets/img/blog/mixed_styles.png",
-    #   "message":"Notification Message",
-    #   "orgId":1,
-    #   "panelId":2,
-    #   "ruleId":1,
-    #   "ruleName":"Panel Title alert",
-    #   "ruleUrl":"http://localhost:3000/d/hZ7BuVbWz/test-dashboard?fullscreen\u0026edit\u0026tab=alert\u0026panelId=2\u0026orgId=1",
-    #   "state":"alerting",
-    #   "tags":{
-    #     "tag name":"tag value"
-    #   },
-    #   "title":"[Alerting] Panel Title alert"
-    # }
-
-    # print(request.data)
-    # data=request.data['evalMatches']
-    # for x in data:
-    #     m=x['metric']
-    # kit_id=m
-    apimedickit=ApiMedicKitPerUser.objects.get(kit_id='00000000')
+    
+    kit_id_user=request.data.get('evalMatches')[0]['metric']
+    apimedickit=ApiMedicKitPerUser.objects.get(kit_id=str(kit_id_user))
     time_now=timezone.now()
     obj_not=ApiMedicNotifications(time=time_now,json_notification=json.dumps(request.data),kit=apimedickit)
     obj_not.save()
