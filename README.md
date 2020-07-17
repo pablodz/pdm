@@ -82,7 +82,7 @@ Contributions are what make the open source community such an amazing place to b
 
 System: Web ([Heroku](https://www.github.com/zurmad/pdm)) + Web (Grafana - Not public yet) + App ([Flutter](https://www.github.com/zurmad/pdm-app))
 
-### 2020-07-13 (Spanish for now)
+### 2020-07-17 (Spanish for now)
 - [x] Asignar kid_id a usuarios. (Se creo tabla para manejar asociación - No automático)
 - [x] Enviar valores de batería. (Se tiene tabla que registra los valores)
 - [x] Enviar alertas al administrador.
