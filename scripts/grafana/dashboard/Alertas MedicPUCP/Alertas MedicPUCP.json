@@ -1,0 +1,710 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "$$hashKey": "object:2410",
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "content": "\n# Alertas MedicPUCP\n\nRangos normales:\n- Presión cardíaca `[75,110]`\n- Frecuencia respiratoria `[12,22]`\n- Temperatura corporal `[35.5,38.0]`\n\n\n",
+      "datasource": null,
+      "description": "",
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "mode": "markdown",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                110
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "max"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [
+                75
+              ],
+              "type": "lt"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "min"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "10s",
+        "frequency": "15s",
+        "handler": 1,
+        "message": "Alerta - Presión cardíaca",
+        "name": "Alerta - P.C.",
+        "noDataState": "no_data",
+        "notifications": [
+          {
+            "uid": "JUqEENnMk"
+          }
+        ]
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "PostgreSQL",
+      "decimals": null,
+      "fill": 1,
+      "fillGradient": 3,
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 6,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  \"time\" AS \"time\",\n  pres_card,\n  kit_id\nFROM api_medic_hypertable\nWHERE\n  $__timeFilter(\"time\")\nORDER BY 1\nLIMIT 512",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "pres_card"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "frec_resp"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_corp"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "api_medic_hypertable",
+          "timeColumn": "\"time\"",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 110
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Alerta - Presion Cardíaca",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2542",
+          "decimals": null,
+          "format": "short",
+          "label": "mmHg",
+          "logBase": 1,
+          "max": "150",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2543",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "dashboardFilter": "",
+      "dashboardTags": [],
+      "datasource": null,
+      "folderId": null,
+      "gridPos": {
+        "h": 13,
+        "w": 6,
+        "x": 0,
+        "y": 5
+      },
+      "id": 8,
+      "limit": 10,
+      "nameFilter": "",
+      "onlyAlertsOnDashboard": false,
+      "show": "current",
+      "sortOrder": 1,
+      "stateFilter": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Últimas alertas",
+      "type": "alertlist"
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                22
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "max"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [
+                10
+              ],
+              "type": "lt"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "min"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "10s",
+        "frequency": "15s",
+        "handler": 1,
+        "message": "Alerta - Frecuencia respiratoria",
+        "name": "Alerta - F.R.",
+        "noDataState": "no_data",
+        "notifications": [
+          {
+            "uid": "JUqEENnMk"
+          }
+        ]
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "PostgreSQL",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 6,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  \"time\" AS \"time\",\n  frec_resp,\n  kit_id\nFROM api_medic_hypertable\nWHERE\n  $__timeFilter(\"time\")\nORDER BY 1\nLIMIT 512",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "pres_card"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "frec_resp"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_corp"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "api_medic_hypertable",
+          "timeColumn": "\"time\"",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 22
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Alerta - Frecuencia respiratoria",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2542",
+          "decimals": null,
+          "format": "short",
+          "label": "respiración / minuto",
+          "logBase": 1,
+          "max": "35",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2543",
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                38
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "max"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [
+                35.5
+              ],
+              "type": "lt"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "A",
+                "10s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "min"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "10s",
+        "frequency": "15s",
+        "handler": 1,
+        "message": "Alerta - Temperatura corporal",
+        "name": "Alerta - T.C.",
+        "noDataState": "no_data",
+        "notifications": [
+          {
+            "uid": "JUqEENnMk"
+          }
+        ]
+      },
+      "aliasColors": {},
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "PostgreSQL",
+      "fill": 1,
+      "fillGradient": 2,
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 6,
+        "y": 12
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pluginVersion": "6.7.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  \"time\" AS \"time\",\n  temp_corp,\n  kit_id\nFROM api_medic_hypertable\nWHERE\n  $__timeFilter(\"time\")\nORDER BY 1\nLIMIT 512",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "pres_card"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "frec_resp"
+                ],
+                "type": "column"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_corp"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "api_medic_hypertable",
+          "timeColumn": "\"time\"",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 38
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Alerta - Temperatura corporal",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2542",
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": "42",
+          "min": "10",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2543",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Dashboard to alert",
+  "uid": "76X7hd7Mz",
+  "variables": {
+    "list": []
+  },
+  "version": 40
+}

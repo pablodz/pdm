@@ -1,0 +1,1 @@
+SELECT time as "Últimos Reportes" FROM api_medic_hypertable ORDER BY time DESC LIMIT 10;
