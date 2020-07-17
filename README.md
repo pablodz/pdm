@@ -92,16 +92,12 @@ System: Web ([Heroku](https://www.github.com/zurmad/pdm)) + Web (Grafana - Not p
 - [x] WEB: Tener historial de alertas.
 - [x] WEB: Personas con presión arterial, frecuencia respiratoria o temperatura corporal anómala.
 - [x] GRAFANA: Agregar batería al dashboard
-- [] APP: Tener historial de alertas.
+- [x] APP: Cambiar fondos de imagenes con emoticones en el texto.
+- [x] APP: Tener historial de alertas.
+- [x] APP: Cambiar tiempos de muestreo por lista según app.
+- [x] APP: Añadir loader mientras carga login token.
 - [] APP: Refresh automático de valores.
-- [] APP: Cambiar tiempos de muestreo por lista según app.
-- [] APP: Añadir loader mientras carga login token.
 - [] APP: Cambiar colores cuando estén o no dentro del rango saludable. (Sin API para no complicar)
-- [] APP: Cambiar fondos de imagenes con emoticones en el texto.
-- [] Encuestar 5 personas que dirijan centros médicos para que pruebe nuestra plataforma.
-- [] Revisar notas que dejaron en el drive
-- [] Enviar alertas al usuario. (Quizás por Firebase como notificaciones).
-- [] Lograr interacción entre Django & Grafana.
 
 ### 2020-06-10
 
