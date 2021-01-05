@@ -36,11 +36,6 @@
 * [General updates](#general-updates)
 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[Content]
-
 <!-- What is MedicPUCP? -->
 ## What is MedicPUCP?
 
